@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0960DB9C-E990-4104-AFEE-A7E09CEB610F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JET</RootNamespace>
+    <AssemblyName>JET Project Solution</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>References\Unchangable\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>References\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>References\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="bsg.componentace.compression.libs.zlib">
+      <HintPath>References\bsg.componentace.compression.libs.zlib.dll</HintPath>
+    </Reference>
+    <Reference Include="bsg.microsoft.extensions.objectpool">
+      <HintPath>References\bsg.microsoft.extensions.objectpool.dll</HintPath>
+    </Reference>
+    <Reference Include="bsg.system.buffers">
+      <HintPath>References\bsg.system.buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="Comfort">
+      <HintPath>References\Unchangable\Comfort.dll</HintPath>
+    </Reference>
+    <Reference Include="Comfort.Unity">
+      <HintPath>References\Unchangable\Comfort.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="FilesChecker">
+      <HintPath>References\FilesChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="ItemComponent.Types">
+      <HintPath>References\ItemComponent.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="ItemTemplate.Types">
+      <HintPath>References\ItemTemplate.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>References\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.UnityConverters">
+      <HintPath>References\Newtonsoft.Json.UnityConverters.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>packages\NLog.4.7.13\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>References\Unchangable\Sirenix.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="UnityEngine">
+      <HintPath>References\Unchangable\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>References\Unchangable\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>References\Unchangable\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>References\Unchangable\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>References\Unchangable\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>References\Unchangable\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>References\Unchangable\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>References\Unchangable\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ModsLoader.cs" />
+    <Compile Include="MonoBehaviour\JET_Instance.cs" />
+    <Compile Include="Patches\Core\BattlEye.cs" />
+    <Compile Include="Patches\Core\EnsureConsistency.cs" />
+    <Compile Include="Patches\Core\NotificationSsl.cs" />
+    <Compile Include="Patches\Core\SslCertificate.cs" />
+    <Compile Include="Patches\Core\UnityWebRequest.cs" />
+    <Compile Include="Patches\Logger\InitialHook.cs" />
+    <Compile Include="Patches\Logger\LoggerOverride.cs" />
+    <Compile Include="Patches\Logger\ResetHook.cs" />
+    <Compile Include="PatchRunner.cs" />
+    <Compile Include="Target.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\ClientAccesor.cs" />
+    <Compile Include="Utility\Logger\IngameLogger.cs" />
+    <Compile Include="Utility\Logger\ToFile.cs" />
+    <Compile Include="Utility\Logger\UnityLogger.cs" />
+    <Compile Include="Utility\Modding\CompatibleWithAttribute.cs" />
+    <Compile Include="Utility\Modding\DependAttribute.cs" />
+    <Compile Include="Utility\Modding\JetMod.cs" />
+    <Compile Include="Utility\Modding\ModInfoAttribute.cs" />
+    <Compile Include="Utility\Modding\ModSettings.cs" />
+    <Compile Include="Utility\Modding\SoftDependAttribute.cs" />
+    <Compile Include="Utility\Patching\AbstractPatch.cs" />
+    <Compile Include="Utility\Patching\Constants.cs" />
+    <Compile Include="Utility\Patching\Extensions.cs" />
+    <Compile Include="Utility\Patching\GenericPatch.cs" />
+    <Compile Include="Utility\Patching\HarmonyPatch.cs" />
+    <Compile Include="Utility\Paths.cs" />
+    <Compile Include="Utility\Reflection\CodeWrapper\Code.cs" />
+    <Compile Include="Utility\Reflection\CodeWrapper\CodeGenerator.cs" />
+    <Compile Include="Utility\Reflection\CodeWrapper\CodeWithLabel.cs" />
+    <Compile Include="Utility\Reflection\PrivateMethodAccessor.cs" />
+    <Compile Include="Utility\Reflection\PrivateValueAccessor.cs" />
+    <Compile Include="Utility\Request.cs" />
+    <Compile Include="Utility\Validator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

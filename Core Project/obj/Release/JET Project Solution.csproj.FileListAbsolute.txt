@@ -1,0 +1,33 @@
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\JET Project Solution.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\JET Project Solution.pdb
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\0Harmony.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\Assembly-CSharp-firstpass.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\Assembly-CSharp.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\bsg.componentace.compression.libs.zlib.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\bsg.microsoft.extensions.objectpool.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\bsg.system.buffers.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\Comfort.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\Comfort.Unity.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\FilesChecker.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\ItemComponent.Types.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\ItemTemplate.Types.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\Newtonsoft.Json.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\Newtonsoft.Json.UnityConverters.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\NLog.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\Sirenix.Serialization.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\UnityEngine.AssetBundleModule.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\UnityEngine.CoreModule.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\UnityEngine.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\UnityEngine.ImageConversionModule.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\UnityEngine.UI.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\UnityEngine.UnityWebRequestAssetBundleModule.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\UnityEngine.UnityWebRequestModule.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\UnityEngine.UnityWebRequestTextureModule.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\UnityEngine.IMGUIModule.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\Unity.ScriptableBuildPipeline.dll
+J:\_git\_JET_REPOS\JET Project Solution\bin\Release\NLog.xml
+J:\_git\_JET_REPOS\JET Project Solution\obj\Release\JET Project Solution.csproj.AssemblyReference.cache
+J:\_git\_JET_REPOS\JET Project Solution\obj\Release\JET Project Solution.csproj.CoreCompileInputs.cache
+J:\_git\_JET_REPOS\JET Project Solution\obj\Release\JET Project Solution.csproj.CopyComplete
+J:\_git\_JET_REPOS\JET Project Solution\obj\Release\JET Project Solution.dll
+J:\_git\_JET_REPOS\JET Project Solution\obj\Release\JET Project Solution.pdb
