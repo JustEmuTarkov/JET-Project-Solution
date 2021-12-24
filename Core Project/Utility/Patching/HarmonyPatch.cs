@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace JET.Utility.Patching
 {
-    class HarmonyPatch
+    public class HarmonyPatch
     {
         private static Harmony harmony;
 

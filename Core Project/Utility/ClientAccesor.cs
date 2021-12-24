@@ -4,6 +4,7 @@ using EFT;
 using JET.Utility.Patching;
 using System.Linq;
 using System.Reflection;
+using System;
 
 namespace JET.Utility
 {
@@ -47,7 +48,7 @@ namespace JET.Utility
         #region Get BetaVersionText Variable
         static EFT.UI.LocalizedText localizedText;
         internal static EFT.UI.LocalizedText BetaVersionLabel {
-            get 
+            get
             {
                 if (localizedText == null && MonoBehaviourSingleton<EFT.UI.PreloaderUI>.Instance != null)
                 {
@@ -62,5 +63,35 @@ namespace JET.Utility
         }
 
         #endregion
+
+        private static ISession _backEndSession;
+        public static ISession BackEndSession
+        {
+            get
+            {
+                if (_backEndSession == null)
+                {
+                    _backEndSession = Singleton<ClientApplication>.Instance.GetClientBackEndSession();
+                }
+
+                return _backEndSession;
+            }
+        }
+        private static Type ClientConfigType;
+        private static string CashedBackendUrl;
+        public static string BackendUrl {
+            get 
+            {
+                if(CashedBackendUrl == null || ClientConfigType == null)
+                {
+                    CashedBackendUrl = Constants.TargetAssemblyTypes
+                        .Where(type => type.GetField("DEFAULT_BACKEND_URL") != null)
+                        .FirstOrDefault()
+                        .GetField("BackendUrl", BindingFlags.Static | BindingFlags.Public).GetValue(null) as string;
+                }
+                return CashedBackendUrl;
+            }
+        }
+
     }
 }
