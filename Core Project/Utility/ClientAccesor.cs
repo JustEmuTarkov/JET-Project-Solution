@@ -64,19 +64,6 @@ namespace JET.Utility
 
         #endregion
 
-        private static ISession _backEndSession;
-        public static ISession BackEndSession
-        {
-            get
-            {
-                if (_backEndSession == null)
-                {
-                    _backEndSession = Singleton<ClientApplication>.Instance.GetClientBackEndSession();
-                }
-
-                return _backEndSession;
-            }
-        }
         private static Type ClientConfigType;
         private static string CashedBackendUrl;
         public static string BackendUrl {
@@ -87,7 +74,7 @@ namespace JET.Utility
                     CashedBackendUrl = Constants.TargetAssemblyTypes
                         .Where(type => type.GetField("DEFAULT_BACKEND_URL") != null)
                         .FirstOrDefault()
-                        .GetField("BackendUrl", BindingFlags.Static | BindingFlags.Public).GetValue(null) as string;
+                        .GetProperty("BackendUrl", BindingFlags.Static | BindingFlags.Public).GetValue(null) as string;
                 }
                 return CashedBackendUrl;
             }

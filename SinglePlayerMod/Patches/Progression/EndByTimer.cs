@@ -8,12 +8,12 @@ using UnityEngine;
 
 namespace SinglePlayerMod.Patches.Progression
 {
-    class EndByTimerPatch : GenericPatch<EndByTimerPatch>
+    class EndByTimer : GenericPatch<EndByTimer>
     {
         private static PropertyInfo _profileIdProperty;
         private static MethodInfo _stopRaidMethod;
 
-        static EndByTimerPatch()
+        static EndByTimer()
         {
             _profileIdProperty = Constants.LocalGameType
                 .BaseType
@@ -48,7 +48,7 @@ namespace SinglePlayerMod.Patches.Progression
             return true;
         }
 
-        public EndByTimerPatch() : base(prefix: nameof(PrefixPatch)) { }
+        public EndByTimer() : base(prefix: nameof(PrefixPatch)) { }
 
         protected override MethodBase GetTargetMethod()
         {

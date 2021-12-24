@@ -132,6 +132,7 @@
     <Compile Include="Utility\Patching\Extensions.cs" />
     <Compile Include="Utility\Patching\GenericPatch.cs" />
     <Compile Include="Utility\Patching\HarmonyPatch.cs" />
+    <Compile Include="Utility\Logger\PatchLogger.cs" />
     <Compile Include="Utility\Paths.cs" />
     <Compile Include="Utility\Reflection\CodeWrapper\Code.cs" />
     <Compile Include="Utility\Reflection\CodeWrapper\CodeGenerator.cs" />

@@ -31,8 +31,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\Core Project\References\Unchangable\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\Core Project\References\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Comfort">
+      <HintPath>..\Core Project\References\Unchangable\Comfort.dll</HintPath>
+    </Reference>
+    <Reference Include="ItemComponent.Types">
+      <HintPath>..\Core Project\References\ItemComponent.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Core Project\References\Unchangable\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,7 +63,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Initializator.cs" />
-    <Compile Include="Patches\Progression\EndByTimerPatch.cs" />
+    <Compile Include="Patches\Flea\RemoveAddOfferButton.cs" />
+    <Compile Include="Patches\Progression\EndByTimer.cs" />
+    <Compile Include="Patches\Progression\ExperienceGainFix.cs" />
+    <Compile Include="Patches\Progression\OfflineSaveProfile.cs" />
+    <Compile Include="Patches\Progression\OfflineSpawnPoint.cs" />
+    <Compile Include="Patches\Quests\ItemDroppedAtPlace_Beacon.cs" />
+    <Compile Include="Patches\Quests\UpdateDogtagOnKill.cs" />
+    <Compile Include="Patches\Raid\BotStationaryWeaponFix.cs" />
+    <Compile Include="Patches\Raid\OnDeadSpeaker.cs" />
+    <Compile Include="Patches\Raid\OnShellEjectEventFix.cs" />
+    <Compile Include="Patches\Raid\SpawnRandomizationMod.cs" />
+    <Compile Include="Patches\ScavMode\LoadOfflineRaidScreen.cs" />
+    <Compile Include="Patches\ScavMode\ScavExfilFix.cs" />
+    <Compile Include="Patches\ScavMode\ScavPrefabLoad.cs" />
+    <Compile Include="Patches\ScavMode\ScavProfileLoad.cs" />
+    <Compile Include="Patches\ScavMode\ScavSpawnPoint.cs" />
+    <Compile Include="Patches\Trading\BarterSchemeAutoFill.cs" />
+    <Compile Include="Utility\Progression\BodyPartHealth.cs" />
+    <Compile Include="Utility\Progression\HealthListener.cs" />
+    <Compile Include="Utility\Progression\PlayerHealth.cs" />
+    <Compile Include="Utility\Progression\SaveLootUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

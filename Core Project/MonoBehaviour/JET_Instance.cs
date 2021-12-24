@@ -8,8 +8,10 @@ namespace JET.MonoBehaviour
 
     public class JET_Instance : MonoBehaviour
     {
+
+        public static GameObject Instance;
         #region OnApplicationQuit Event
-            public delegate void Void();
+        public delegate void Void();
             public static event Void ApplicationQuitEvent;
             public void OnApplicationQuit() => ApplicationQuitEvent?.Invoke();
         #endregion
