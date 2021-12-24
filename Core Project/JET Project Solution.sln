@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JET Project Solution", "JET Project Solution.csproj", "{0960DB9C-E990-4104-AFEE-A7E09CEB610F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyNoCrashMod", "..\MoneyNoCrashMod\MoneyNoCrashMod.csproj", "{D3BCB3E9-076E-42B0-801B-3B7CB6AC51F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinglePlayerMod", "..\SinglePlayerMod\SinglePlayerMod.csproj", "{257B1185-F890-470E-BB0E-214319A1DCA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{0960DB9C-E990-4104-AFEE-A7E09CEB610F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0960DB9C-E990-4104-AFEE-A7E09CEB610F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0960DB9C-E990-4104-AFEE-A7E09CEB610F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3BCB3E9-076E-42B0-801B-3B7CB6AC51F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3BCB3E9-076E-42B0-801B-3B7CB6AC51F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3BCB3E9-076E-42B0-801B-3B7CB6AC51F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3BCB3E9-076E-42B0-801B-3B7CB6AC51F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{257B1185-F890-470E-BB0E-214319A1DCA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{257B1185-F890-470E-BB0E-214319A1DCA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{257B1185-F890-470E-BB0E-214319A1DCA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{257B1185-F890-470E-BB0E-214319A1DCA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
