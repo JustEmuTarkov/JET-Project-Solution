@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace SinglePlayerMod.Patches.Quests
 {
+    /// <summary>
+    /// Seems like this patch is fixed already. So its useless but i will leave it for future refference
+    /// </summary>
     class ItemDroppedAtPlace_Beacon : GenericPatch<ItemDroppedAtPlace_Beacon>
     {
         public ItemDroppedAtPlace_Beacon() : base(prefix: nameof(PatchPrefix)) { }
@@ -40,4 +43,20 @@ namespace SinglePlayerMod.Patches.Quests
             return false;
         }
     }
+    // Most likely its this method that is edited
+    /*
+protected void PlantItem(string itemId, string zoneId, bool successful)
+{
+    if (successful)
+    {
+	    this.Profile.ItemDroppedAtPlace(itemId, zoneId);
+    }
+}
+
+// Token: 0x06005529 RID: 21801 RVA: 0x000D55A0 File Offset: 0x000D37A0
+internal virtual void vmethod_3(Item item, string zone)
+{
+    this.PlantItem(item.TemplateId, zone, true);
+}
+     */
 }

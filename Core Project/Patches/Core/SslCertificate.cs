@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace JET.Patches.Core
 {
+	/// <summary>
+	/// Overrides SSL certificate method response to always return true.
+	/// </summary>
     class SslCertificate : GenericPatch<SslCertificate>
 	{
 		private string _ValidateCertificate = "ValidateCertificate";

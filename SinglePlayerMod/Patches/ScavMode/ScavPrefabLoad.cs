@@ -24,7 +24,7 @@ namespace SinglePlayerMod.Patches.ScavMode
                     && x.GetField("location") != null
                     && x.GetField("mainApplication_0") != null
                     && x.GetField("timeHasComeScreenController") == null)
-                .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                .GetMethods(Constants.NonPublicInstanceDeclaredOnlyFlag)
                 .FirstOrDefault(x => x.Name == "MoveNext");
         }
 

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JET</RootNamespace>
-    <AssemblyName>JET Project Solution</AssemblyName>
+    <AssemblyName>NLog.JET_Project</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -25,92 +25,117 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Build\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>References\Unchangable\0Harmony.dll</HintPath>
+      <HintPath>..\References\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>References\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\References\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>References\Assembly-CSharp-firstpass.dll</HintPath>
+      <HintPath>..\References\Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="bsg.componentace.compression.libs.zlib">
-      <HintPath>References\bsg.componentace.compression.libs.zlib.dll</HintPath>
+      <HintPath>..\References\bsg.componentace.compression.libs.zlib.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="bsg.microsoft.extensions.objectpool">
-      <HintPath>References\bsg.microsoft.extensions.objectpool.dll</HintPath>
+      <HintPath>..\References\bsg.microsoft.extensions.objectpool.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="bsg.system.buffers">
-      <HintPath>References\bsg.system.buffers.dll</HintPath>
+      <HintPath>..\References\bsg.system.buffers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Comfort">
-      <HintPath>References\Unchangable\Comfort.dll</HintPath>
+      <HintPath>..\References\Comfort.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Comfort.Unity">
-      <HintPath>References\Unchangable\Comfort.Unity.dll</HintPath>
+      <HintPath>..\References\Comfort.Unity.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="FilesChecker">
-      <HintPath>References\FilesChecker.dll</HintPath>
+      <HintPath>..\References\FilesChecker.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ItemComponent.Types">
-      <HintPath>References\ItemComponent.Types.dll</HintPath>
+      <HintPath>..\References\ItemComponent.Types.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ItemTemplate.Types">
-      <HintPath>References\ItemTemplate.Types.dll</HintPath>
+      <HintPath>..\References\ItemTemplate.Types.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>References\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\References\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json.UnityConverters">
-      <HintPath>References\Newtonsoft.Json.UnityConverters.dll</HintPath>
+      <HintPath>..\References\Newtonsoft.Json.UnityConverters.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.4.7.13\lib\net45\NLog.dll</HintPath>
+    <Reference Include="NLog">
+      <HintPath>..\References\NLog.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Sirenix.Serialization">
-      <HintPath>References\Unchangable\Sirenix.Serialization.dll</HintPath>
+      <HintPath>..\References\Sirenix.Serialization.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>References\Unchangable\UnityEngine.dll</HintPath>
+      <HintPath>..\References\UnityEngine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.AssetBundleModule">
-      <HintPath>References\Unchangable\UnityEngine.AssetBundleModule.dll</HintPath>
+      <HintPath>..\References\UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>References\Unchangable\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>References\Unchangable\UnityEngine.ImageConversionModule.dll</HintPath>
+      <HintPath>..\References\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>References\Unchangable\UnityEngine.UI.dll</HintPath>
+      <HintPath>..\References\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-      <HintPath>References\Unchangable\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <HintPath>..\References\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>References\Unchangable\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <HintPath>..\References\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-      <HintPath>References\Unchangable\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <HintPath>..\References\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FakeModels\CertificateHandler.cs" />
     <Compile Include="ModsLoader.cs" />
     <Compile Include="MonoBehaviour\JET_Instance.cs" />
     <Compile Include="Patches\Core\BattlEye.cs" />
-    <Compile Include="Patches\Core\EnsureConsistency.cs" />
+    <Compile Include="Patches\Core\FileChecker_Override.cs" />
     <Compile Include="Patches\Core\NotificationSsl.cs" />
     <Compile Include="Patches\Core\SslCertificate.cs" />
     <Compile Include="Patches\Core\UnityWebRequest.cs" />
+    <Compile Include="Patches\Core\WebSocket.cs" />
     <Compile Include="Patches\Logger\InitialHook.cs" />
     <Compile Include="Patches\Logger\LoggerOverride.cs" />
     <Compile Include="Patches\Logger\ResetHook.cs" />

@@ -1,45 +1,58 @@
-﻿using JET.Utility.Patching;
-using JET.Utility.Reflection;
+﻿using HarmonyLib;
+using JET.Utility.Patching;
+using JET.Utility.Reflection.CodeWrapper;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
+using UnityEngine;
 
 namespace SinglePlayerMod.Patches.ScavMode
 {
     class ScavSpawnPoint : GenericPatch<ScavSpawnPoint>
     {
-        public ScavSpawnPoint() : base(prefix: nameof(PatchPrefix)) { }
+        public ScavSpawnPoint() : base(prefix: nameof(PatchTranspile)) { }
 
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.TargetAssembly.GetTypes()
-                .FirstOrDefault(x => x.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
-                .Select(y => y.Name).Contains("SelectFarthestFromOtherPlayers"))
-                .GetNestedTypes(BindingFlags.NonPublic).FirstOrDefault(x => x.GetField("infiltrationZone") != null)
-                .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
-                .FirstOrDefault(x => x.GetParameters().Length == 1 && x.GetParameters()[0].ParameterType == typeof(EFT.Game.Spawning.ISpawnPoint)/*typeof(BotZone.SpawnAreaSettings)*/);
+            return Constants.ExfilPointManagerType.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.CreateInstance)
+                .Single(methodInfo => methodInfo.GetParameters().Length == 3 && methodInfo.ReturnType == typeof(void));
+
         }
 
-        /*
-// Class1808.Class1810
-// Token: 0x06009F97 RID: 40855 RVA: 0x001028C2 File Offset: 0x00100AC2
-internal bool method_2(ISpawnPoint spawnPoint)
-{
-	return spawnPoint.smethod_1(this.side);
-}
-         */
-
-        static bool PatchPrefix(ref bool __result, object __instance)
+        private static IEnumerable<CodeInstruction> PatchTranspile(ILGenerator generator, IEnumerable<CodeInstruction> instructions)
         {
-            var playerSide = (EFT.EPlayerSide)PrivateValueAccessor.GetPrivateFieldValue(__instance.GetType(), "side", __instance);
+            var codes = new List<CodeInstruction>(instructions);
+            var searchCode = new CodeInstruction(OpCodes.Call, AccessTools.Method(Constants.ExfilPointManagerType, "RemoveProfileIdFromPoints"));
+            var searchIndex = -1;
 
-            if (playerSide == EFT.EPlayerSide.Savage)
+            for (var i = 0; i < codes.Count; i++)
             {
-                __result = true;
-
-                return false;
+                if (codes[i].opcode == searchCode.opcode && codes[i].operand == searchCode.operand)
+                {
+                    searchIndex = i;
+                    break;
+                }
             }
 
-            return true;
+            // Patch failed.
+            if (searchIndex == -1)
+            {
+                Debug.LogError(string.Format("Patch {0} failed: Could not find reference code.", MethodBase.GetCurrentMethod()));
+                return instructions;
+            }
+
+            searchIndex += 1;
+
+            var newCodes = CodeGenerator.GenerateInstructions(new List<Code>()
+            {
+                new Code(OpCodes.Ldarg_0),
+                new Code(OpCodes.Call, Constants.ExfilPointManagerType, "get_ScavExfiltrationPoints")
+            });
+
+            codes.RemoveRange(searchIndex, 23);
+            codes.InsertRange(searchIndex, newCodes);
+            return codes.AsEnumerable();
         }
     }
 }

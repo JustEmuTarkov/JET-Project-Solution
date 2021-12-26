@@ -64,12 +64,11 @@ namespace JET.Utility
 
         #endregion
 
-        private static Type ClientConfigType;
         private static string CashedBackendUrl;
         public static string BackendUrl {
             get 
             {
-                if(CashedBackendUrl == null || ClientConfigType == null)
+                if(CashedBackendUrl == null)
                 {
                     CashedBackendUrl = Constants.TargetAssemblyTypes
                         .Where(type => type.GetField("DEFAULT_BACKEND_URL") != null)

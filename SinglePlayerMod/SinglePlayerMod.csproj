@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SinglePlayerMod</RootNamespace>
-    <AssemblyName>SinglePlayerMod</AssemblyName>
+    <AssemblyName>Mod_SinglePlayer_byJet</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -25,26 +25,39 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Build\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>..\Core Project\References\Unchangable\0Harmony.dll</HintPath>
+      <HintPath>..\References\0Harmony.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\Core Project\References\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\References\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Comfort">
-      <HintPath>..\Core Project\References\Unchangable\Comfort.dll</HintPath>
+      <HintPath>..\References\Comfort.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Comfort.Unity">
+      <HintPath>..\References\Comfort.Unity.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="ItemComponent.Types">
-      <HintPath>..\Core Project\References\ItemComponent.Types.dll</HintPath>
+      <HintPath>..\References\ItemComponent.Types.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\Core Project\References\Unchangable\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\References\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>..\References\Sirenix.Serialization.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,31 +68,55 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\Core Project\References\Unchangable\UnityEngine.dll</HintPath>
+      <HintPath>..\References\UnityEngine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\Core Project\References\Unchangable\UnityEngine.CoreModule.dll</HintPath>
+      <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\References\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Initializator.cs" />
+    <Compile Include="LoadPatchesFromServer.cs" />
     <Compile Include="Patches\Flea\RemoveAddOfferButton.cs" />
+    <Compile Include="Patches\HealthListner\ReplaceInMainMenuController.cs" />
+    <Compile Include="Patches\HealthListner\ReplaceInPlayer.cs" />
+    <Compile Include="Patches\MatchMaker\AutoSetOfflineMatch.cs" />
+    <Compile Include="Patches\MatchMaker\BringBackInsuranceScreen.cs" />
+    <Compile Include="Patches\MatchMaker\DisableReadyButtonOnFirstScreen.cs" />
+    <Compile Include="Patches\MatchMaker\DisableReadyButtonOnSelectLocation.cs" />
+    <Compile Include="Patches\Other\NoFilters.cs" />
+    <Compile Include="Patches\Other\OldStreamerMode.cs" />
+    <Compile Include="Patches\Other\UnlockItem24CharId.cs" />
     <Compile Include="Patches\Progression\EndByTimer.cs" />
     <Compile Include="Patches\Progression\ExperienceGainFix.cs" />
     <Compile Include="Patches\Progression\OfflineSaveProfile.cs" />
     <Compile Include="Patches\Progression\OfflineSpawnPoint.cs" />
     <Compile Include="Patches\Quests\ItemDroppedAtPlace_Beacon.cs" />
     <Compile Include="Patches\Quests\UpdateDogtagOnKill.cs" />
-    <Compile Include="Patches\Raid\BotStationaryWeaponFix.cs" />
-    <Compile Include="Patches\Raid\OnDeadSpeaker.cs" />
-    <Compile Include="Patches\Raid\OnShellEjectEventFix.cs" />
+    <Compile Include="Patches\Raid\BossSpawnChance.cs" />
+    <Compile Include="Patches\Raid\LoadBotDifficultyFromServer.cs" />
+    <Compile Include="Patches\Raid\BotSettingsLoad.cs" />
+    <Compile Include="Patches\Raid\BotTemplateLimit.cs" />
+    <Compile Include="Patches\Raid\CoreDifficulty.cs" />
+    <Compile Include="Patches\Raid\LoadBotTemplatesFromServer.cs" />
+    <Compile Include="Patches\Raid\MaxBotCap.cs" />
+    <Compile Include="Patches\Raid\RemoveUsedBotProfile.cs" />
+    <Compile Include="Patches\Raid\SpawnPmc.cs" />
     <Compile Include="Patches\Raid\SpawnRandomizationMod.cs" />
+    <Compile Include="Patches\Raid\TinnitusFix.cs" />
     <Compile Include="Patches\ScavMode\LoadOfflineRaidScreen.cs" />
     <Compile Include="Patches\ScavMode\ScavExfilFix.cs" />
     <Compile Include="Patches\ScavMode\ScavPrefabLoad.cs" />
     <Compile Include="Patches\ScavMode\ScavProfileLoad.cs" />
     <Compile Include="Patches\ScavMode\ScavSpawnPoint.cs" />
     <Compile Include="Patches\Trading\BarterSchemeAutoFill.cs" />
+    <Compile Include="Utility\DefaultRaidSettings.cs" />
     <Compile Include="Utility\Progression\BodyPartHealth.cs" />
     <Compile Include="Utility\Progression\HealthListener.cs" />
     <Compile Include="Utility\Progression\PlayerHealth.cs" />
@@ -90,6 +127,7 @@
     <ProjectReference Include="..\Core Project\JET Project Solution.csproj">
       <Project>{0960DB9C-E990-4104-AFEE-A7E09CEB610F}</Project>
       <Name>JET Project Solution</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

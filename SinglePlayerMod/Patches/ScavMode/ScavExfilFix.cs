@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using EFT;
 using HarmonyLib;
-//using JET.Utility;
 using JET.Utility.Patching;
 using JET.Utility.Reflection.CodeWrapper;
 using UnityEngine;
@@ -13,17 +13,22 @@ namespace SinglePlayerMod.Patches.ScavMode
 {
     class ScavExfilFix : GenericPatch<ScavExfilFix>
     {
-        public ScavExfilFix() : base(transpiler: nameof(PatchTranspile)) { }
+
+        public ScavExfilFix() : base(transpiler: nameof(PatchTranspile)) {
+        }
 
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.LocalGameType.BaseType.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.CreateInstance).Single(IsTargetMethod);
+            return Constants.ExfilPointManagerType
+                .GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.CreateInstance)
+                .Single(methodInfo => 
+                    methodInfo.IsVirtual && methodInfo.GetParameters().Length == 0 && methodInfo.ReturnType == typeof(void) && methodInfo.GetMethodBody().LocalVariables.Count > 0);
         }
 
         static IEnumerable<CodeInstruction> PatchTranspile(ILGenerator generator, IEnumerable<CodeInstruction> instructions)
         {
             var codes = new List<CodeInstruction>(instructions);
-            var searchCode = new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(Constants.ExfilPointManagerType, "EligiblePoints", new System.Type[] { typeof(Profile) }));
+            var searchCode = new CodeInstruction(OpCodes.Call, AccessTools.Method(Constants.ExfilPointManagerType, "EligiblePoints", new Type[] { typeof(Profile) }));
             var searchIndex = -1;
 
             for (var i = 0; i < codes.Count; i++)
@@ -38,7 +43,7 @@ namespace SinglePlayerMod.Patches.ScavMode
             // Patch failed.
             if (searchIndex == -1)
             {
-                JET.Utility.Logger.Patch.LogTranspileSearchError(MethodBase.GetCurrentMethod());
+                Debug.LogError(string.Format("Patch {0} failed: Could not find reference code.", MethodBase.GetCurrentMethod()));
                 return instructions;
             }
 
@@ -64,7 +69,11 @@ namespace SinglePlayerMod.Patches.ScavMode
                 new Code(OpCodes.Ldarg_0),
                 new Code(OpCodes.Call, Constants.LocalGameType.BaseType, "get_Profile_0"),
                 new Code(OpCodes.Ldfld, typeof(Profile), "Id"),
-                new Code(OpCodes.Callvirt, Constants.ExfilPointManagerType, "ScavExfiltrationClaim", new System.Type[]{ typeof(Vector3), typeof(string) }),
+                new Code(OpCodes.Ldarg_0),
+                new Code(OpCodes.Call, Constants.LocalGameType.BaseType, "get_Profile_0"),
+                new Code(OpCodes.Call, Constants.ProfileType, "get_FenceInfo"),
+                new Code(OpCodes.Call, Constants.FenceTraderInfoType, "get_AvailableExitsCount"),
+                new Code(OpCodes.Callvirt, Constants.ExfilPointManagerType, "ScavExfiltrationClaim", new Type[]{ typeof(Vector3), typeof(string), typeof(int) }),
                 new Code(OpCodes.Call, Constants.ExfilPointManagerType, "get_Instance"),
                 new Code(OpCodes.Call, Constants.ExfilPointManagerType, "get_Instance"),
                 new Code(OpCodes.Ldarg_0),
@@ -74,13 +83,13 @@ namespace SinglePlayerMod.Patches.ScavMode
                 new Code(OpCodes.Ldarg_0),
                 new Code(OpCodes.Call, Constants.LocalGameType.BaseType, "get_Profile_0"),
                 new Code(OpCodes.Ldfld, typeof(Profile), "Id"),
-                new Code(OpCodes.Callvirt, Constants.ExfilPointManagerType, "ScavExfiltrationClaim", new System.Type[]{ typeof(int), typeof(string) }),
+                new Code(OpCodes.Callvirt, Constants.ExfilPointManagerType, "ScavExfiltrationClaim", new Type[]{ typeof(int), typeof(string) }),
                 new Code(OpCodes.Br, brLabel),
                 new CodeWithLabel(OpCodes.Call, brFalseLabel, Constants.ExfilPointManagerType, "get_Instance"),
                 new Code(OpCodes.Ldarg_0),
                 new Code(OpCodes.Call, Constants.LocalGameType.BaseType, "get_Profile_0"),
-                new Code(OpCodes.Callvirt, Constants.ExfilPointManagerType, "EligiblePoints", new System.Type[]{ typeof(Profile) }),
-                new CodeWithLabel(OpCodes.Stloc_0, brLabel)
+                new Code(OpCodes.Callvirt, Constants.ExfilPointManagerType, "EligiblePoints", new Type[]{ typeof(Profile) }),
+                new CodeWithLabel(OpCodes.Stloc_2, brLabel)
             });
 
             codes.RemoveRange(searchIndex, 5);
@@ -89,9 +98,5 @@ namespace SinglePlayerMod.Patches.ScavMode
             return codes.AsEnumerable();
         }
 
-        private static bool IsTargetMethod(MethodInfo methodInfo)
-        {
-            return methodInfo.IsVirtual && methodInfo.GetParameters().Length == 0 && methodInfo.ReturnType == typeof(void) && methodInfo.GetMethodBody().LocalVariables.Count > 0;
-        }
     }
 }
