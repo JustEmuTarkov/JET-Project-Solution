@@ -26,7 +26,7 @@ namespace JET.Patches.Logger
 
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.TargetAssemblyTypes
+            return Constants.Instance.TargetAssemblyTypes
                 .First(x => x.IsClass && x.GetProperty("UnityDebugLogsEnabled") != null)
                 .GetMethods()
                 .First(x => x.GetParameters().Length == 4 && x.Name == "Log");

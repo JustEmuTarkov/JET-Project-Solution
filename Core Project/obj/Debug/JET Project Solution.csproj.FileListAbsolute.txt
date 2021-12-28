@@ -1,0 +1,2 @@
+J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\obj\Debug\JET Project Solution.csproj.AssemblyReference.cache
+J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\obj\Debug\JET Project Solution.csproj.CoreCompileInputs.cache

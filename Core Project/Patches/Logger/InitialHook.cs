@@ -9,7 +9,7 @@ namespace JET.Patches.Logger
     {
         public InitialHook() : base(postfix: nameof(PatchPostifx)) { }
 
-        protected override MethodBase GetTargetMethod() => Constants.MainApplicationConstructorInfo.First();
+        protected override MethodBase GetTargetMethod() => Constants.Instance.MainApplicationConstructorInfo.First();
 
         static void PatchPostifx() => UnityEngine.Debug.unityLogger.logHandler = UnityLogger.Instance;
     }

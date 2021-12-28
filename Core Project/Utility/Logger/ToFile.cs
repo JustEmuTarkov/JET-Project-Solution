@@ -28,7 +28,7 @@ namespace JET.Utility.Logger
             WriteTimer.AutoReset = true;
             WriteTimer.Elapsed += WriteTimer_Elapsed;
             WriteTimer.Start();
-            MonoBehaviour.JET_Instance.ApplicationQuitEvent += Application_quitting;
+            Mono.JET_Instance.ApplicationQuitEvent += Application_quitting;
         }
 
         private static void Application_quitting() => SaveLogFile();

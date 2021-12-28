@@ -19,7 +19,7 @@ namespace SinglePlayerMod.Patches.ScavMode
 
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.ExfilPointManagerType
+            return Constants.Instance.ExfilPointManagerType
                 .GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.CreateInstance)
                 .Single(methodInfo => 
                     methodInfo.IsVirtual && methodInfo.GetParameters().Length == 0 && methodInfo.ReturnType == typeof(void) && methodInfo.GetMethodBody().LocalVariables.Count > 0);
@@ -28,7 +28,7 @@ namespace SinglePlayerMod.Patches.ScavMode
         static IEnumerable<CodeInstruction> PatchTranspile(ILGenerator generator, IEnumerable<CodeInstruction> instructions)
         {
             var codes = new List<CodeInstruction>(instructions);
-            var searchCode = new CodeInstruction(OpCodes.Call, AccessTools.Method(Constants.ExfilPointManagerType, "EligiblePoints", new Type[] { typeof(Profile) }));
+            var searchCode = new CodeInstruction(OpCodes.Call, AccessTools.Method(Constants.Instance.ExfilPointManagerType, "EligiblePoints", new Type[] { typeof(Profile) }));
             var searchIndex = -1;
 
             for (var i = 0; i < codes.Count; i++)
@@ -54,41 +54,41 @@ namespace SinglePlayerMod.Patches.ScavMode
             var newCodes = CodeGenerator.GenerateInstructions(new List<Code>()
             {
                 new Code(OpCodes.Ldarg_0),
-                new Code(OpCodes.Call, Constants.LocalGameType.BaseType, "get_Profile_0"),
+                new Code(OpCodes.Call, Constants.Instance.LocalGameType.BaseType, "get_Profile_0"),
                 new Code(OpCodes.Ldfld, typeof(Profile), "Info"),
-                new Code(OpCodes.Ldfld, Constants.ProfileInfoType, "Side"),
+                new Code(OpCodes.Ldfld, Constants.Instance.ProfileInfoType, "Side"),
                 new Code(OpCodes.Ldc_I4_4),
                 new Code(OpCodes.Ceq),
                 new Code(OpCodes.Brfalse, brFalseLabel),
-                new Code(OpCodes.Call, Constants.ExfilPointManagerType, "get_Instance"),
+                new Code(OpCodes.Call, Constants.Instance.ExfilPointManagerType, "get_Instance"),
                 new Code(OpCodes.Ldarg_0),
-                new Code(OpCodes.Ldfld, Constants.LocalGameType.BaseType, "gparam_0"),
+                new Code(OpCodes.Ldfld, Constants.Instance.LocalGameType.BaseType, "gparam_0"),
                 new Code(OpCodes.Box, typeof(PlayerOwner)),
                 new Code(OpCodes.Callvirt, typeof(PlayerOwner), "get_Player"),
                 new Code(OpCodes.Callvirt, typeof(Player), "get_Position"),
                 new Code(OpCodes.Ldarg_0),
-                new Code(OpCodes.Call, Constants.LocalGameType.BaseType, "get_Profile_0"),
+                new Code(OpCodes.Call, Constants.Instance.LocalGameType.BaseType, "get_Profile_0"),
                 new Code(OpCodes.Ldfld, typeof(Profile), "Id"),
                 new Code(OpCodes.Ldarg_0),
-                new Code(OpCodes.Call, Constants.LocalGameType.BaseType, "get_Profile_0"),
-                new Code(OpCodes.Call, Constants.ProfileType, "get_FenceInfo"),
-                new Code(OpCodes.Call, Constants.FenceTraderInfoType, "get_AvailableExitsCount"),
-                new Code(OpCodes.Callvirt, Constants.ExfilPointManagerType, "ScavExfiltrationClaim", new Type[]{ typeof(Vector3), typeof(string), typeof(int) }),
-                new Code(OpCodes.Call, Constants.ExfilPointManagerType, "get_Instance"),
-                new Code(OpCodes.Call, Constants.ExfilPointManagerType, "get_Instance"),
+                new Code(OpCodes.Call, Constants.Instance.LocalGameType.BaseType, "get_Profile_0"),
+                new Code(OpCodes.Call, Constants.Instance.ProfileType, "get_FenceInfo"),
+                new Code(OpCodes.Call, Constants.Instance.FenceTraderInfoType, "get_AvailableExitsCount"),
+                new Code(OpCodes.Callvirt, Constants.Instance.ExfilPointManagerType, "ScavExfiltrationClaim", new Type[]{ typeof(Vector3), typeof(string), typeof(int) }),
+                new Code(OpCodes.Call, Constants.Instance.ExfilPointManagerType, "get_Instance"),
+                new Code(OpCodes.Call, Constants.Instance.ExfilPointManagerType, "get_Instance"),
                 new Code(OpCodes.Ldarg_0),
-                new Code(OpCodes.Call, Constants.LocalGameType.BaseType, "get_Profile_0"),
+                new Code(OpCodes.Call, Constants.Instance.LocalGameType.BaseType, "get_Profile_0"),
                 new Code(OpCodes.Ldfld, typeof(Profile), "Id"),
-                new Code(OpCodes.Callvirt, Constants.ExfilPointManagerType, "GetScavExfiltrationMask"),
+                new Code(OpCodes.Callvirt, Constants.Instance.ExfilPointManagerType, "GetScavExfiltrationMask"),
                 new Code(OpCodes.Ldarg_0),
-                new Code(OpCodes.Call, Constants.LocalGameType.BaseType, "get_Profile_0"),
+                new Code(OpCodes.Call, Constants.Instance.LocalGameType.BaseType, "get_Profile_0"),
                 new Code(OpCodes.Ldfld, typeof(Profile), "Id"),
-                new Code(OpCodes.Callvirt, Constants.ExfilPointManagerType, "ScavExfiltrationClaim", new Type[]{ typeof(int), typeof(string) }),
+                new Code(OpCodes.Callvirt, Constants.Instance.ExfilPointManagerType, "ScavExfiltrationClaim", new Type[]{ typeof(int), typeof(string) }),
                 new Code(OpCodes.Br, brLabel),
-                new CodeWithLabel(OpCodes.Call, brFalseLabel, Constants.ExfilPointManagerType, "get_Instance"),
+                new CodeWithLabel(OpCodes.Call, brFalseLabel, Constants.Instance.ExfilPointManagerType, "get_Instance"),
                 new Code(OpCodes.Ldarg_0),
-                new Code(OpCodes.Call, Constants.LocalGameType.BaseType, "get_Profile_0"),
-                new Code(OpCodes.Callvirt, Constants.ExfilPointManagerType, "EligiblePoints", new Type[]{ typeof(Profile) }),
+                new Code(OpCodes.Call, Constants.Instance.LocalGameType.BaseType, "get_Profile_0"),
+                new Code(OpCodes.Callvirt, Constants.Instance.ExfilPointManagerType, "EligiblePoints", new Type[]{ typeof(Profile) }),
                 new CodeWithLabel(OpCodes.Stloc_2, brLabel)
             });
 

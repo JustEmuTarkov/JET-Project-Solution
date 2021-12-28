@@ -19,11 +19,11 @@ namespace JET.Patches.Core
 
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.TargetAssemblyTypes
-                .First(x => x.IsClass && x.GetMethod(_MethodName, Constants.PublicInstanceFlag) != null)
-                .GetNestedTypes(Constants.NonPublicFlag)
+            return Constants.Instance.TargetAssemblyTypes
+                .First(x => x.IsClass && x.GetMethod(_MethodName, Constants.Instance.PublicInstanceFlag) != null)
+                .GetNestedTypes(Constants.Instance.NonPublicFlag)
                 .Single(y => y.GetConstructor(new[] { typeof(int) }) != null)
-                .GetMethod(_MethodName_MoveNext, Constants.NonPublicInstanceDeclaredOnlyFlag);
+                .GetMethod(_MethodName_MoveNext, Constants.Instance.NonPublicInstanceDeclaredOnlyFlag);
         }
         #region Additional Info and Explanation
         /* what's going on here?
@@ -89,7 +89,7 @@ namespace JET.Patches.Core
 
             var dupCode = new CodeInstruction(OpCodes.Dup);
 
-            var certificateHandlerType = Constants.TargetAssembly.GetTypes().Single(x => x.BaseType == Constants.UnityCertificateHandlerType);
+            var certificateHandlerType = Constants.Instance.TargetAssembly.GetTypes().Single(x => x.BaseType == Constants.Instance.UnityCertificateHandlerType);
             var newObjCode = new CodeInstruction(OpCodes.Newobj, AccessTools.Constructor(certificateHandlerType));
             var callVirtCode = new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(typeof(UnityWebRequest), _certificateHandler));
 

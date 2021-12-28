@@ -45,7 +45,7 @@ namespace JET.Utility
         {
             get
             {
-                return (NoOfficialHyh) ? " Pirated Game! Please buy the game." : "";
+                return (NoOfficialHyh) ? " | Detected Pirated Game Files! Please buy the game." : "";
             }
         }
 
@@ -82,9 +82,7 @@ namespace JET.Utility
                         if (File.Exists(gamefilepath))
                         {
                             FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(gamefilepath);
-                            string file_version = myFileVersionInfo.FileVersion.Split('.').Last();
-                            string file_version2 = FoundGameVersions.Split('.').Last();
-                            if (file_version == file_version2)
+                            if (myFileVersionInfo.ProductVersion.Split('-')[1] == FoundGameVersions.Split('.').Last())
                             {
                                 NoOfficialHyh = false;
                                 return true;

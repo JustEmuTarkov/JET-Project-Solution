@@ -22,13 +22,13 @@ namespace SinglePlayerMod.Patches.Raid
             return getBotDifficultyHandler.GetMethod("LoadDifficultyStringInternal", BindingFlags.Public | BindingFlags.Static);
         }
 
-        private static bool PatchPrefix(ref string __result, LoadBotDifficultyFromServer botDifficulty, WildSpawnType role)
+        private static bool PatchPrefix(ref string __result, BotDifficulty botDifficulty, WildSpawnType role)
         {
             __result = Request(role, botDifficulty);
             return string.IsNullOrWhiteSpace(__result);
         }
 
-        private static string Request(WildSpawnType role, LoadBotDifficultyFromServer botDifficulty)
+        private static string Request(WildSpawnType role, BotDifficulty botDifficulty)
         {
             var json = new Request(null, ClientAccesor.BackendUrl).GetJson("/singleplayer/settings/bot/difficulty/" + role.ToString() + "/" + botDifficulty.ToString());
 

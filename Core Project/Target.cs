@@ -12,10 +12,10 @@ namespace JET
 			GameObject result = GameObject.Find("JET Instance");
 			if (result == null)
 			{
-				MonoBehaviour.JET_Instance.Instance = new GameObject("JET Instance");
-				Object.DontDestroyOnLoad(MonoBehaviour.JET_Instance.Instance);
+				Mono.JET_Instance.Instance = new GameObject("JET Instance");
+				Object.DontDestroyOnLoad(Mono.JET_Instance.Instance);
 				//initialize Jet core instance
-				MonoBehaviour.JET_Instance.Instance.GetOrAddComponent<MonoBehaviour.JET_Instance>();
+				Mono.JET_Instance.Instance.GetOrAddComponent<Mono.JET_Instance>();
 			}
 		}
 	}

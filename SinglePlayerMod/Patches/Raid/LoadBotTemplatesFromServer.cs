@@ -1,11 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-//using WaveInfo = GClass984; // not used // search for: Difficulty and chppse gclass with lower number whic hcontains Role and Limit variables
-using BotsPresets = GClass587; //changed from 586
-using BotData = GInterface18;
-using PoolManager = GClass1482;
-using JobPriority = GClass2516;
 using JET.Utility.Patching;
 using System.Reflection;
 using EFT;
@@ -13,6 +7,13 @@ using UnityEngine;
 using JET.Utility;
 using Comfort.Common;
 using System.Threading;
+
+//using WaveInfo = GClass984; // not used // search for: Difficulty and chppse gclass with lower number whic hcontains Role and Limit variables
+using BotsPresets = GClass599;
+using BotData = GInterface18;
+using PoolManager = GClass1514;
+using JobPriority = GClass2569;
+
 
 namespace SinglePlayerMod.Patches.Raid
 {

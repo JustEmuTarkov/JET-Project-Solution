@@ -16,7 +16,7 @@ namespace SinglePlayerMod.Patches.Other
 
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.TargetAssembly.GetTypes().Single(x => x.GetMethod("SetStreamMode") != null).GetMethod("SetStreamMode");
+            return Constants.Instance.TargetAssembly.GetTypes().Single(x => x.GetMethod("SetStreamMode") != null).GetMethod("SetStreamMode");
         }
 
         static IEnumerable<CodeInstruction> PatchTranspile(IEnumerable<CodeInstruction> instructions)

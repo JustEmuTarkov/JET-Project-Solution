@@ -20,8 +20,8 @@ namespace SinglePlayerMod.Patches.Raid
 
         public SpawnPmc() : base(prefix: nameof(PatchPrefix))
         {
-            targetInterface = Constants.TargetAssembly.GetTypes().Single(IsTargetInterface);
-            targetType = Constants.TargetAssembly.GetTypes().Single(IsTargetType);
+            targetInterface = Constants.Instance.TargetAssembly.GetTypes().Single(IsTargetInterface);
+            targetType = Constants.Instance.TargetAssembly.GetTypes().Single(IsTargetType);
             wildSpawnTypeField = AccessTools.FieldRefAccess<WildSpawnType>(targetType, "wildSpawnType_0"); // Type
             botDifficultyField = AccessTools.FieldRefAccess<BotDifficulty>(targetType, "botDifficulty_0"); // LoadBotDifficultyFromServer
         }

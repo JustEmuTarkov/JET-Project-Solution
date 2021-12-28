@@ -17,7 +17,7 @@ namespace SinglePlayerMod.Patches.Progression
 
         protected override MethodBase GetTargetMethod()
         {
-            foreach (var method in Constants.MainApplicationType.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly))
+            foreach (var method in Constants.Instance.MainApplicationType.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly))
             {
                 //if (method.Name == "method_44") {
                 //    Debug.LogError($"{method.GetParameters().Length} {method.GetParameters()[0].ParameterType.Name} {method.GetParameters()[3].Name} {method.GetParameters()[3].ParameterType.Name}");

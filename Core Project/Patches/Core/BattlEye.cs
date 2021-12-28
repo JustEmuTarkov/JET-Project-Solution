@@ -19,11 +19,11 @@ namespace JET.Patches.Core
 
 		protected override MethodBase GetTargetMethod()
 		{
-			System.Type __type = Constants.TargetAssemblyTypes.Single(x => x.GetMethod(_MethodName, Constants.PublicInstanceFlag) != null);
+			System.Type __type = Constants.Instance.TargetAssemblyTypes.Single(x => x.GetMethod(_MethodName, Constants.Instance.PublicInstanceFlag) != null);
 
-			__property = __type.GetProperty(_FieldName, Constants.PublicInstanceFlag);
+			__property = __type.GetProperty(_FieldName, Constants.Instance.PublicInstanceFlag);
 
-			return __type.GetMethod(_MethodName, Constants.PublicInstanceFlag);
+			return __type.GetMethod(_MethodName, Constants.Instance.PublicInstanceFlag);
 		}
 
 		private static bool PatchPrefix(ref Task __result, object __instance)

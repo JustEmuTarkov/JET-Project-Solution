@@ -15,7 +15,7 @@ namespace JET.Patches.Core
 
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.UnityUnityWebRequestType.GetMethod(nameof(UnityWebRequestTexture.GetTexture), new[] { typeof(string) });
+            return Constants.Instance.UnityUnityWebRequestType.GetMethod(nameof(UnityWebRequestTexture.GetTexture), new[] { typeof(string) });
         }
 
         static void PatchPostfix(UnityEngine.Networking.UnityWebRequest __result)

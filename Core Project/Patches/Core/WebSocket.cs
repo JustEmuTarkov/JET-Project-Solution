@@ -12,8 +12,8 @@ namespace JET.Patches.Core
 
         protected override MethodBase GetTargetMethod()
         {
-            var targetInterface = Constants.TargetAssemblyTypes.Single(x => x.GetMethod("SetRequestHeader", BindingFlags.NonPublic | BindingFlags.Instance) != null && x.IsInterface);
-            var typeThatMatches = Constants.TargetAssemblyTypes.Single(x => targetInterface.IsAssignableFrom(x) && x.IsAbstract && !x.IsInterface);
+            var targetInterface = Constants.Instance.TargetAssemblyTypes.Single(x => x.GetMethod("SetRequestHeader", BindingFlags.NonPublic | BindingFlags.Instance) != null && x.IsInterface);
+            var typeThatMatches = Constants.Instance.TargetAssemblyTypes.Single(x => targetInterface.IsAssignableFrom(x) && x.IsAbstract && !x.IsInterface);
             return typeThatMatches.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Single(x => x.ReturnType == typeof(Uri));
         }
 

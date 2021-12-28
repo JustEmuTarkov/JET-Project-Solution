@@ -15,16 +15,16 @@ namespace SinglePlayerMod.Patches.Progression
 
         static EndByTimer()
         {
-            _profileIdProperty = Constants.LocalGameType
+            _profileIdProperty = Constants.Instance.LocalGameType
                 .BaseType
-                .GetProperty("ProfileId", Constants.NonPublicInstanceFlag)
+                .GetProperty("ProfileId", Constants.Instance.NonPublicInstanceFlag)
                 ?? throw new InvalidOperationException("'ProfileId' property not found");
 
             // find method
             // protected void method_11(string profileId, ExitStatus exitStatus, string exitName, float delay = 0f)
-            _stopRaidMethod = Constants.LocalGameType
+            _stopRaidMethod = Constants.Instance.LocalGameType
                 .BaseType
-                .GetMethods(Constants.NonPublicInstanceDeclaredOnlyFlag)
+                .GetMethods(Constants.Instance.NonPublicInstanceDeclaredOnlyFlag)
                 .SingleOrDefault(IsStopRaidMethod)
                 ?? throw new InvalidOperationException("Method not found");
         }
@@ -52,9 +52,9 @@ namespace SinglePlayerMod.Patches.Progression
 
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.LocalGameType
+            return Constants.Instance.LocalGameType
                 .BaseType
-                .GetMethods(Constants.NonPublicInstanceDeclaredOnlyFlag)
+                .GetMethods(Constants.Instance.NonPublicInstanceDeclaredOnlyFlag)
                 .Single(x => x.Name.EndsWith("StopGame"));  // find explicit interface implementation
         }
 

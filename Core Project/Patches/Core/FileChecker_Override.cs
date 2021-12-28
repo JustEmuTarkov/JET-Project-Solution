@@ -22,9 +22,9 @@ namespace JET.Patches.Core
 
 		protected override MethodBase GetTargetMethod()
 		{
-			return Constants.FileCheckerAssemblyTypes
+			return Constants.Instance.FileCheckerAssemblyTypes
 				.Single(Class => Class.Name == _ClassName)
-				.GetMethod(_MethodName, Constants.PublicInstanceFlag);
+				.GetMethod(_MethodName, Constants.Instance.PublicInstanceFlag);
 		}
 
 		static bool PatchPrefix(ref System.Collections.Generic.IReadOnlyList<FileConsistencyMetadata> __result)

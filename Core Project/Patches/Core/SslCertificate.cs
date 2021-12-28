@@ -14,9 +14,9 @@ namespace JET.Patches.Core
 
 		protected override MethodBase GetTargetMethod()
 		{
-			return Constants.TargetAssemblyTypes
-				.Single(x => x.BaseType == Constants.UnityCertificateHandlerType)
-				.GetMethod(_ValidateCertificate, Constants.NonPublicInstanceDeclaredOnlyFlag);
+			return Constants.Instance.TargetAssemblyTypes
+				.Single(x => x.BaseType == Constants.Instance.UnityCertificateHandlerType)
+				.GetMethod(_ValidateCertificate, Constants.Instance.NonPublicInstanceDeclaredOnlyFlag);
 		}
 
 		static bool PatchPrefix(ref bool __result)

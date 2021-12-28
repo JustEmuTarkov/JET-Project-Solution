@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using WaveInfo = GClass1226; // search for: Difficulty and chppse gclass with lower number whic hcontains Role and Limit variables
-using BotsPresets = GClass586; // Method: GetNewProfile (higher GClass number)
 using JET.Utility.Patching;
 using System.Reflection;
 using EFT;
 using JET.Utility;
 using UnityEngine;
+
+using WaveInfo = GClass1257; // search for: Difficulty and chppse gclass with lower number whic hcontains Role and Limit variables
+using BotsPresets = GClass599; // Method: GetNewProfile (higher GClass number)
 // Method: GetNewProfile (higher GClass number)
 
 namespace SinglePlayerMod.Patches.Raid
@@ -22,7 +23,7 @@ namespace SinglePlayerMod.Patches.Raid
 
         protected override MethodBase GetTargetMethod()
         {
-            foreach (var type in Constants.TargetAssembly.GetTypes())
+            foreach (var type in Constants.Instance.TargetAssembly.GetTypes())
             {
                 if (type.Name.StartsWith("GClass"))
                 {
@@ -37,7 +38,7 @@ namespace SinglePlayerMod.Patches.Raid
             return null;
         }
 
-        public static void PatchPostfix(List<WaveInfo> __result, List<WaveInfo> wavesProfiles, List<WaveInfo> delayed)
+        public static void PatchPostfix(List<WaveInfo> __result/*, List<WaveInfo> wavesProfiles*/, List<WaveInfo> delayed)
         {
             /*
                 In short this method sums Limits by grouping wavesPropfiles collection by Role and Difficulty

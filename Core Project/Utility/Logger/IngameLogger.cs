@@ -14,7 +14,7 @@ namespace JET.Utility.Logger
         private static void FindInternalLoggerVariables() {
             if (loggerClass == null)
             {
-                var list = Constants.TargetAssemblyTypes
+                var list = Constants.Instance.TargetAssemblyTypes
                     .Where(type =>
                         type.Name.StartsWith("GClass") &&
                         type.GetField("IsLogsEnabled", BindingFlags.Public | BindingFlags.Static) != null &&

@@ -16,7 +16,7 @@ namespace SinglePlayerMod.Patches.Raid
         {
             var flags = BindingFlags.Public | BindingFlags.Instance;
             var methodName = "SetSettings";
-            return Constants.TargetAssemblyTypes.Single(x => x.GetMethod(methodName, flags) != null && IsTargetMethod(x.GetMethod(methodName, flags)))
+            return Constants.Instance.TargetAssemblyTypes.Single(x => x.GetMethod(methodName, flags) != null && IsTargetMethod(x.GetMethod(methodName, flags)))
                 .GetMethod(methodName, flags);
         }
 

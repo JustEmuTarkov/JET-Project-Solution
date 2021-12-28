@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using JET.Utility;
 
-using IHealthController = GInterface188; // ActiveBuffsNames
-using StDamage = GStruct247; // BodyPartColliderType
-using IEffect = GInterface147; // AddWholeTime
+using IHealthController = GInterface190; // ActiveBuffsNames
+using StDamage = GStruct248; // BodyPartColliderType
+using IEffect = GInterface149; // AddWholeTime
 
 namespace SinglePlayerMod.Utility.Progression
 {
@@ -45,7 +45,7 @@ namespace SinglePlayerMod.Utility.Progression
         private HealthListener()
         {
             _request = new Request(ClientAccesor.GetClientApp().GetClientBackEndSession().GetPhpSessionId(), ClientAccesor.BackendUrl);
-            _simpleTimer = JET.MonoBehaviour.JET_Instance.Instance.GetOrAddComponent<SimpleTimer>();
+            _simpleTimer = JET.Mono.JET_Instance.Instance.GetOrAddComponent<SimpleTimer>();
             _simpleTimer.syncHealthAction = () => Task.Run(() => _request.PostJson("/player/health/sync", CurrentHealth.ToJson()));
         }
 

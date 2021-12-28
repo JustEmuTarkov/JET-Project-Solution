@@ -1,10 +1,6 @@
 ﻿using JET.Utility.Patching;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SinglePlayerMod.Patches.MatchMaker
 {
@@ -27,7 +23,7 @@ namespace SinglePlayerMod.Patches.MatchMaker
         {
             // find method 
             // private void method_53(bool local, GStruct73 weatherSettings, GStruct177 botsSettings, GStruct74 wavesSettings)
-            return Constants.MenuControllerType
+            return Constants.Instance.MenuControllerType
                 .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly)
                 .FirstOrDefault(IsTargetMethod);    // controller contains 2 methods with same signature. Usually target method is first of them.
         }

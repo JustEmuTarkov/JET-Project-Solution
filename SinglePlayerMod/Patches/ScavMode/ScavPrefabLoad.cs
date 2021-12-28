@@ -24,7 +24,7 @@ namespace SinglePlayerMod.Patches.ScavMode
                     && x.GetField("location") != null
                     && x.GetField("mainApplication_0") != null
                     && x.GetField("timeHasComeScreenController") == null)
-                .GetMethods(Constants.NonPublicInstanceDeclaredOnlyFlag)
+                .GetMethods(Constants.Instance.NonPublicInstanceDeclaredOnlyFlag)
                 .FirstOrDefault(x => x.Name == "MoveNext");
         }
 
@@ -33,7 +33,7 @@ namespace SinglePlayerMod.Patches.ScavMode
             var codes = new List<CodeInstruction>(instructions);
 
             // Search for code where backend.Session.getProfile() is called.
-            var searchCode = new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(Constants.SessionInterfaceType, "get_Profile"));
+            var searchCode = new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(Constants.Instance.SessionInterfaceType, "get_Profile"));
             var searchIndex = -1;
 
             for (var i = 0; i < codes.Count; i++)
@@ -62,15 +62,15 @@ namespace SinglePlayerMod.Patches.ScavMode
             {
                 new Code(OpCodes.Ldloc_1),
                 new Code(OpCodes.Ldfld, typeof(ClientApplication), "_backEnd"),
-                new Code(OpCodes.Callvirt, Constants.BackendInterfaceType, "get_Session"),
+                new Code(OpCodes.Callvirt, Constants.Instance.BackendInterfaceType, "get_Session"),
                 new Code(OpCodes.Ldloc_1),
                 new Code(OpCodes.Ldfld, typeof(MainApplication), "esideType_0"),
                 new Code(OpCodes.Ldc_I4_0),
                 new Code(OpCodes.Ceq),
                 new Code(OpCodes.Brfalse, brFalseLabel),
-                new Code(OpCodes.Callvirt, Constants.SessionInterfaceType, "get_Profile"),
+                new Code(OpCodes.Callvirt, Constants.Instance.SessionInterfaceType, "get_Profile"),
                 new Code(OpCodes.Br, brLabel),
-                new CodeWithLabel(OpCodes.Callvirt, brFalseLabel, Constants.SessionInterfaceType, "get_ProfileOfPet"),
+                new CodeWithLabel(OpCodes.Callvirt, brFalseLabel, Constants.Instance.SessionInterfaceType, "get_ProfileOfPet"),
                 new CodeWithLabel(OpCodes.Ldc_I4_1, brLabel)
             });
 

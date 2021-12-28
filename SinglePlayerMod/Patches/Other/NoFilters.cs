@@ -13,7 +13,7 @@ namespace SinglePlayerMod.Patches.Other
 		public NoFilters() : base(prefix: nameof(PatchPrefix)) { }
 		protected override MethodBase GetTargetMethod()
 		{
-			var type = Constants.TargetAssembly.GetTypes().Single(x => x.GetMethod("CheckItemFilter", BindingFlags.Public | BindingFlags.Static) != null
+			var type = Constants.Instance.TargetAssembly.GetTypes().Single(x => x.GetMethod("CheckItemFilter", BindingFlags.Public | BindingFlags.Static) != null
 																  && x.GetMethod("CheckItemFilter", BindingFlags.Public | BindingFlags.Static).IsDefined(typeof(ExtensionAttribute), true));
 			return type.GetMethod("smethod_0", BindingFlags.NonPublic | BindingFlags.Static);
 		}

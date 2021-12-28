@@ -17,7 +17,7 @@ namespace SinglePlayerMod.Patches.Other
 
         protected override MethodBase GetTargetMethod()
         {
-            foreach (var MyType in Constants.TargetAssembly.GetTypes())
+            foreach (var MyType in Constants.Instance.TargetAssembly.GetTypes())
             {
 
                 if (MyType.FullName.Split('+').Length == 3 && MyType.FullName.StartsWith("Class")) // make sure its 3 classes deep

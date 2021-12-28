@@ -29,7 +29,7 @@ namespace JET.Utility
             get
             {
                 if (!string.IsNullOrWhiteSpace(_gameVersion)) return _gameVersion;
-                var list = Constants.TargetAssembly.GetTypes()
+                var list = Constants.Instance.TargetAssembly.GetTypes()
                     .Where(type =>
                         type.Name.StartsWith("Class") &&
                         type.GetField("string_0", BindingFlags.NonPublic | BindingFlags.Static) != null &&
@@ -45,18 +45,30 @@ namespace JET.Utility
         }
         #endregion
 
+        #region PreloaderUI Instance
+
+        public static EFT.UI.PreloaderUI PreloaderUI 
+        {
+            get 
+            {
+                return Singleton<EFT.UI.PreloaderUI>.Instance;
+            }
+        }
+
+        #endregion
+
         #region Get BetaVersionText Variable
         static EFT.UI.LocalizedText localizedText;
         internal static EFT.UI.LocalizedText BetaVersionLabel {
             get
             {
-                if (localizedText == null && MonoBehaviourSingleton<EFT.UI.PreloaderUI>.Instance != null)
+                if (localizedText == null && PreloaderUI != null)
                 {
                     if (typeof(EFT.UI.PreloaderUI).GetField("_alphaVersionLabel", BindingFlags.NonPublic | BindingFlags.Instance) == null)
                         return null;
                     localizedText = typeof(EFT.UI.PreloaderUI)
                     .GetField("_alphaVersionLabel", BindingFlags.NonPublic | BindingFlags.Instance)
-                    .GetValue(MonoBehaviourSingleton<EFT.UI.PreloaderUI>.Instance) as EFT.UI.LocalizedText;
+                    .GetValue(PreloaderUI) as EFT.UI.LocalizedText;
                 }
                 return localizedText;
             }
@@ -70,11 +82,13 @@ namespace JET.Utility
             {
                 if(CashedBackendUrl == null)
                 {
-                    CashedBackendUrl = Constants.TargetAssemblyTypes
-                        .Where(type => type.GetField("DEFAULT_BACKEND_URL") != null)
+                    CashedBackendUrl = Constants.Instance.TargetAssemblyTypes
+                        .Where(type => type.GetField("DEFAULT_BACKEND_URL", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy) != null)
                         .FirstOrDefault()
                         .GetProperty("BackendUrl", BindingFlags.Static | BindingFlags.Public).GetValue(null) as string;
                 }
+                if (CashedBackendUrl == null)
+                    Debug.LogError("CashedBackendUrl still is null");
                 return CashedBackendUrl;
             }
         }

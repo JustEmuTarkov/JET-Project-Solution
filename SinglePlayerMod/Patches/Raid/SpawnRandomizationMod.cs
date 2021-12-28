@@ -13,7 +13,7 @@ namespace SinglePlayerMod.Patches.Raid
         public SpawnRandomizationMod() : base(transpiler: nameof(TranspilerPatch)) { }
         protected override MethodBase GetTargetMethod()
         {
-            var targetType = Constants.TargetAssemblyTypes
+            var targetType = Constants.Instance.TargetAssemblyTypes
                 .First(x => x.IsClass && x.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.FlattenHierarchy)
                 .Any(y => y.Name.Contains(".") && y.Name.Split('.')[1] == "SelectSpawnPoint"));
             return targetType

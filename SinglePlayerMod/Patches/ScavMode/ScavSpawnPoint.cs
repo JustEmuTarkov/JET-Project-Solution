@@ -15,7 +15,7 @@ namespace SinglePlayerMod.Patches.ScavMode
 
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.ExfilPointManagerType.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.CreateInstance)
+            return Constants.Instance.ExfilPointManagerType.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.CreateInstance)
                 .Single(methodInfo => methodInfo.GetParameters().Length == 3 && methodInfo.ReturnType == typeof(void));
 
         }
@@ -23,7 +23,7 @@ namespace SinglePlayerMod.Patches.ScavMode
         private static IEnumerable<CodeInstruction> PatchTranspile(ILGenerator generator, IEnumerable<CodeInstruction> instructions)
         {
             var codes = new List<CodeInstruction>(instructions);
-            var searchCode = new CodeInstruction(OpCodes.Call, AccessTools.Method(Constants.ExfilPointManagerType, "RemoveProfileIdFromPoints"));
+            var searchCode = new CodeInstruction(OpCodes.Call, AccessTools.Method(Constants.Instance.ExfilPointManagerType, "RemoveProfileIdFromPoints"));
             var searchIndex = -1;
 
             for (var i = 0; i < codes.Count; i++)
@@ -47,7 +47,7 @@ namespace SinglePlayerMod.Patches.ScavMode
             var newCodes = CodeGenerator.GenerateInstructions(new List<Code>()
             {
                 new Code(OpCodes.Ldarg_0),
-                new Code(OpCodes.Call, Constants.ExfilPointManagerType, "get_ScavExfiltrationPoints")
+                new Code(OpCodes.Call, Constants.Instance.ExfilPointManagerType, "get_ScavExfiltrationPoints")
             });
 
             codes.RemoveRange(searchIndex, 23);

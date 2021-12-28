@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+
 using BotData = GInterface18; // find ChooseProfile and get ginterface off that
 
 namespace SinglePlayerMod.Patches.Raid
@@ -20,8 +21,8 @@ namespace SinglePlayerMod.Patches.Raid
             // compile-time check
             _ = nameof(BotData.ChooseProfile);
 
-            targetInterface = Constants.TargetAssembly.GetTypes().Single(IsTargetInterface);
-            targetType = Constants.TargetAssembly.GetTypes().Single(IsTargetType);
+            targetInterface = Constants.Instance.TargetAssembly.GetTypes().Single(IsTargetInterface);
+            targetType = Constants.Instance.TargetAssembly.GetTypes().Single(IsTargetType);
             profilesField = AccessTools.FieldRefAccess<List<Profile>>(targetType, "list_0");
         }
 

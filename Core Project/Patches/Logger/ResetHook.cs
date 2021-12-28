@@ -10,11 +10,11 @@ namespace JET.Patches.Logger
         public ResetHook() : base(postfix: nameof(PatchPostifx)) { }
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.TargetAssemblyTypes
+            return Constants.Instance.TargetAssemblyTypes
                 .First(x => x.IsClass && x.GetProperty("UnityDebugLogsEnabled") != null)
-                .GetNestedTypes(Constants.NonPublicFlag)
-                .First(x => x.GetMethod("Release", Constants.PublicInstanceFlag) != null)
-                .GetConstructors(Constants.NonPublicInstanceFlag)
+                .GetNestedTypes(Constants.Instance.NonPublicFlag)
+                .First(x => x.GetMethod("Release", Constants.Instance.PublicInstanceFlag) != null)
+                .GetConstructors(Constants.Instance.NonPublicInstanceFlag)
                 .First();
         }
 

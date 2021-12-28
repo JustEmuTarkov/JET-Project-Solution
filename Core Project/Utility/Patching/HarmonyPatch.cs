@@ -22,13 +22,13 @@ namespace JET.Utility.Patching
         public static void PatchPrefix<T>() where T : AbstractPatch, new()
         {
             harmony.Patch(new T().TargetMethod(), prefix: new HarmonyMethod(typeof(T).GetMethod("Prefix")));
-            Debug.Log("[JET]: Applied prefix patch " + typeof(T).Name);
+            Debug.LogError("[JET]: Applied prefix patch " + typeof(T).Name);
         }
 
         public static void PatchPostfix<T>() where T : AbstractPatch, new()
         {
             harmony.Patch(new T().TargetMethod(), postfix: new HarmonyMethod(typeof(T).GetMethod("Postfix")));
-            Debug.Log("[JET]: Applied postfix patch " + typeof(T).Name);
+            Debug.LogError("[JET]: Applied postfix patch " + typeof(T).Name);
         }
 
         public static void Patch<T>() where T : GenericPatch<T>, new()

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-using ISpawnPoints = GInterface240;
+using ISpawnPoints = GInterface242;
 
 namespace SinglePlayerMod.Patches.Progression
 {
@@ -15,13 +15,13 @@ namespace SinglePlayerMod.Patches.Progression
 
         protected override MethodBase GetTargetMethod()
         {
-            var targetType = Constants.TargetAssembly.GetTypes().First(IsTargetType);
-            return targetType.GetMethods(Constants.DefaultBindingFlags).First(m => m.Name.Contains("SelectSpawnPoint"));
+            var targetType = Constants.Instance.TargetAssembly.GetTypes().First(IsTargetType);
+            return targetType.GetMethods(Constants.Instance.DefaultBindingFlags).First(m => m.Name.Contains("SelectSpawnPoint"));
         }
 
         private static bool IsTargetType(Type type)
         {
-            var methods = type.GetMethods(Constants.DefaultBindingFlags);
+            var methods = type.GetMethods(Constants.Instance.DefaultBindingFlags);
 
             if (!methods.Any(x => x.Name.IndexOf("CheckFarthestFromOtherPlayers", StringComparison.OrdinalIgnoreCase) != -1))
                 return false;
@@ -38,9 +38,9 @@ namespace SinglePlayerMod.Patches.Progression
         /// <param name="side"></param>
         /// <param name="infiltration"></param>
         /// <returns></returns>
-        public static bool PatchPrefix(ref EFT.Game.Spawning.ISpawnPoint __result, ISpawnPoints ___ginterface240_0, EFT.Game.Spawning.ESpawnCategory category, EFT.EPlayerSide side, string infiltration)
+        public static bool PatchPrefix(ref EFT.Game.Spawning.ISpawnPoint __result, ISpawnPoints ___ginterface242_0, EFT.Game.Spawning.ESpawnCategory category, EFT.EPlayerSide side, string infiltration)
         {
-            var spawnPoints = ___ginterface240_0.ToList();
+            var spawnPoints = ___ginterface242_0.ToList();
 
             var unfilteredSpawnPoints = spawnPoints.ToList();
             var infils = spawnPoints.Select(sp => sp.Infiltration).Distinct();

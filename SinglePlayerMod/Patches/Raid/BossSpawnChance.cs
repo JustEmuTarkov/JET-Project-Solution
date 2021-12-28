@@ -30,7 +30,7 @@ namespace SinglePlayerMod.Patches.Raid
 
         protected override MethodBase GetTargetMethod()
         {
-            return Constants.LocalGameType.BaseType
+            return Constants.Instance.LocalGameType.BaseType
                 .GetMethods(BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.DeclaredOnly)
                 .SingleOrDefault(m => IsTargetMethod(m));
         }

@@ -5,8 +5,8 @@ using EFT;
 using EFT.InventoryLogic;
 using UnityEngine;
 
-using Equipment = GClass2040; // GetSlot
-using DamageInfo = GStruct247; // HittedBallisticCollider
+using Equipment = GClass2087; // GetSlot
+using StDamage = GStruct248; // HittedBallisticCollider
 
 namespace SinglePlayerMod.Patches.Quests
 {
@@ -18,7 +18,7 @@ namespace SinglePlayerMod.Patches.Quests
         {
             // compile-time checks
             _ = nameof(Equipment.GetSlot);
-            _ = nameof(DamageInfo.Weapon);
+            _ = nameof(StDamage.Weapon);
 
             getEquipmentProperty = typeof(Player)
                 .GetProperty("Equipment", BindingFlags.NonPublic | BindingFlags.Instance)
@@ -29,7 +29,7 @@ namespace SinglePlayerMod.Patches.Quests
         protected override MethodBase GetTargetMethod() => typeof(Player)
             .GetMethod("OnBeenKilledByAggressor", BindingFlags.NonPublic | BindingFlags.Instance);
 
-        public static void PatchPostfix(Player __instance, Player aggressor, DamageInfo damageInfo)
+        public static void PatchPostfix(Player __instance, Player aggressor, StDamage damageInfo)
         {
             if (__instance.Profile.Info.Side == EPlayerSide.Savage)
             {

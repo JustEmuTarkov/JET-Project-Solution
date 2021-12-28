@@ -16,14 +16,14 @@ namespace SinglePlayerMod.Patches.ScavMode
 
         protected override MethodBase GetTargetMethod()
         {
-           return Constants.MainApplicationType.GetNestedTypes(Constants.NonPublicInstanceDeclaredOnlyFlag)
+           return Constants.Instance.MainApplicationType.GetNestedTypes(Constants.Instance.NonPublicInstanceDeclaredOnlyFlag)
                 .Single(x =>
                     x.GetField("entryPoint") != null
                     && x.GetField("timeAndWeather") != null
                     && x.GetField("timeHasComeScreenController") != null
                     && x.GetField("location") != null
                     && x.Name.Contains("Struct"))
-                .GetMethods(Constants.NonPublicInstanceDeclaredOnlyFlag)
+                .GetMethods(Constants.Instance.NonPublicInstanceDeclaredOnlyFlag)
                 .FirstOrDefault(x => x.Name == "MoveNext");
         }
 
@@ -32,7 +32,7 @@ namespace SinglePlayerMod.Patches.ScavMode
             var codes = new List<CodeInstruction>(instructions);
 
             // Search for code where backend.Session.getProfile() is called.
-            var searchCode = new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(Constants.SessionInterfaceType, "get_Profile"));
+            var searchCode = new CodeInstruction(OpCodes.Callvirt, AccessTools.Method(Constants.Instance.SessionInterfaceType, "get_Profile"));
             var searchIndex = -1;
 
             for (var i = 0; i < codes.Count; i++)
@@ -62,16 +62,16 @@ namespace SinglePlayerMod.Patches.ScavMode
             {
                 new Code(OpCodes.Ldarg_0),
                 new Code(OpCodes.Ldfld, typeof(ClientApplication), "_backEnd"),
-                new Code(OpCodes.Callvirt, Constants.BackendInterfaceType, "get_Session"),
+                new Code(OpCodes.Callvirt, Constants.Instance.BackendInterfaceType, "get_Session"),
                 new Code(OpCodes.Ldarg_0),
-                new Code(OpCodes.Ldfld, Constants.MainApplicationType, "esideType_0"),
+                new Code(OpCodes.Ldfld, Constants.Instance.MainApplicationType, "esideType_0"),
                 new Code(OpCodes.Ldc_I4_0),
                 new Code(OpCodes.Ceq),
                 new Code(OpCodes.Brfalse, brFalseLabel),
-                new Code(OpCodes.Callvirt, Constants.SessionInterfaceType, "get_Profile"),
+                new Code(OpCodes.Callvirt, Constants.Instance.SessionInterfaceType, "get_Profile"),
                 new Code(OpCodes.Br, brLabel),
-                new CodeWithLabel(OpCodes.Callvirt, brFalseLabel, Constants.SessionInterfaceType, "get_ProfileOfPet"),
-                new CodeWithLabel(OpCodes.Stfld, brLabel, Constants.MainApplicationType.GetNestedTypes(BindingFlags.NonPublic).Single(IsTargetNestedType), "profile")
+                new CodeWithLabel(OpCodes.Callvirt, brFalseLabel, Constants.Instance.SessionInterfaceType, "get_ProfileOfPet"),
+                new CodeWithLabel(OpCodes.Stfld, brLabel, Constants.Instance.MainApplicationType.GetNestedTypes(BindingFlags.NonPublic).Single(IsTargetNestedType), "profile")
             });
 
             codes.RemoveRange(searchIndex + 1, 5);
