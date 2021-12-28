@@ -2,7 +2,7 @@
 using JET.Utility.Logger;
 using System.Linq;
 
-namespace JET.MonoBehaviour
+namespace JET.Mono
 {
     using UnityEngine; // << using is here because namespace is the same and messing with monobehaviour
 
