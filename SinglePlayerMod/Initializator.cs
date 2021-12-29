@@ -1,5 +1,6 @@
 ﻿
 
+using JET.Utility;
 using JET.Utility.Modding;
 using JET.Utility.Patching;
 using System;
@@ -11,10 +12,27 @@ namespace SinglePlayerMod
     {
         protected override void Initialize(IReadOnlyDictionary<Type, JetMod> dependencies, string gameVersion)
         {
-            LoadPatchesFromServer.Call();
-            // this mod is still in progress and is not finished !!!!
-
-            //JET.Utility.Patching.HarmonyPatch.Patch<>();
+            //try
+            //{
+                LoadPatchesFromServer.Call(); // initiate the "should i load this patch or not"
+                Patch_Flea();
+                Patch_HealthListner();
+                Patch_MatchMaker();
+                Patch_Other();
+                Patch_Progression();
+                Patch_Quests();
+                Patch_Raid();
+                Patch_ScavMode();
+                Patch_Trading();
+            //}
+            //catch (Exception e)
+            //{
+            //    System.IO.File.AppendAllText(JET.Utility.Paths.GetGameDirectory + "/ErrorInSinglePlayer.log", e.Message + " || " + e.StackTrace + "\n" +
+            //        EFTBackendSettings.Instance.SelectedBackendUrl);
+            //}
+        }
+        private void Patch_Flea() 
+        {
             if (LoadPatchesFromServer.List_PatchNode.Flea)
             {
                 if (LoadPatchesFromServer.List_Patch.RemoveAddOfferButton_Awake)
@@ -22,6 +40,9 @@ namespace SinglePlayerMod
                 if (LoadPatchesFromServer.List_Patch.RemoveAddOfferButton_Call)
                     HarmonyPatch.Patch<Patches.Flea.RemoveAddOfferButton_Call>();
             }
+        }
+        private void Patch_HealthListner() 
+        {
             if (LoadPatchesFromServer.List_PatchNode.HealthListner)
             {
                 if (LoadPatchesFromServer.List_Patch.ReplaceInMainMenuController)
@@ -29,6 +50,9 @@ namespace SinglePlayerMod
                 if (LoadPatchesFromServer.List_Patch.ReplaceInPlayer)
                     HarmonyPatch.Patch<Patches.HealthListner.ReplaceInPlayer>();
             }
+        }
+        private void Patch_MatchMaker() 
+        {
             if (LoadPatchesFromServer.List_PatchNode.MatchMaker)
             {
                 if (LoadPatchesFromServer.List_Patch.AutoSetOfflineMatch)
@@ -40,6 +64,9 @@ namespace SinglePlayerMod
                 if (LoadPatchesFromServer.List_Patch.DisableReadyButtonOnSelectLocation)
                     HarmonyPatch.Patch<Patches.MatchMaker.DisableReadyButtonOnSelectLocation>();
             }
+        }
+        private void Patch_Other() 
+        {
             if (LoadPatchesFromServer.List_PatchNode.Other)
             {
                 if (LoadPatchesFromServer.List_Patch.NoFilters)
@@ -49,6 +76,9 @@ namespace SinglePlayerMod
                 if (LoadPatchesFromServer.List_Patch.UnlockItem24CharId)
                     HarmonyPatch.Patch<Patches.Other.UnlockItem24CharId>();
             }
+        }
+        private void Patch_Progression() 
+        {
             if (LoadPatchesFromServer.List_PatchNode.Progression)
             {
                 if (LoadPatchesFromServer.List_Patch.EndByTimer)
@@ -60,12 +90,18 @@ namespace SinglePlayerMod
                 if (LoadPatchesFromServer.List_Patch.OfflineSpawnPoint)
                     HarmonyPatch.Patch<Patches.Progression.OfflineSpawnPoint>();
             }
+        }
+        private void Patch_Quests() 
+        {
             if (LoadPatchesFromServer.List_PatchNode.Quests)
             {
                 //HarmonyPatch.Patch<Patches.Quests.ItemDroppedAtPlace_Beacon>(); // Disabled due to it being already fixed in the client
                 if (LoadPatchesFromServer.List_Patch.UpdateDogtagOnKill)
                     HarmonyPatch.Patch<Patches.Quests.UpdateDogtagOnKill>();
             }
+        }
+        private void Patch_Raid() 
+        {
             if (LoadPatchesFromServer.List_PatchNode.Raid)
             {
                 if (LoadPatchesFromServer.List_Patch.BossSpawnChance)
@@ -91,6 +127,9 @@ namespace SinglePlayerMod
                 if (LoadPatchesFromServer.List_Patch.TinnitusFix)
                     HarmonyPatch.Patch<Patches.Raid.TinnitusFix>();
             }
+        }
+        private void Patch_ScavMode() 
+        {
             if (LoadPatchesFromServer.List_PatchNode.ScavMode)
             {
                 if (LoadPatchesFromServer.List_Patch.LoadOfflineRaidScreen)
@@ -104,6 +143,9 @@ namespace SinglePlayerMod
                 if (LoadPatchesFromServer.List_Patch.ScavSpawnPoint)
                     HarmonyPatch.Patch<Patches.ScavMode.ScavSpawnPoint>();
             }
+        }
+        private void Patch_Trading() 
+        {
             if (LoadPatchesFromServer.List_PatchNode.Trading)
             {
                 if (LoadPatchesFromServer.List_Patch.BarterSchemeAutoFill)
@@ -111,6 +153,7 @@ namespace SinglePlayerMod
                 if (LoadPatchesFromServer.List_Patch.BarterSchemeAutoFillPersist)
                     HarmonyPatch.Patch<Patches.Trading.BarterSchemeAutoFillPersist>();
             }
+
         }
     }
 }

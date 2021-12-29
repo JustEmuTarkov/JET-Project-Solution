@@ -26,8 +26,6 @@ J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\bin\Release\Unity.Script
 J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\bin\Release\UnityEngine.UnityWebRequestAssetBundleModule.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\bin\Release\bsg.system.buffers.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\bin\Release\JET Project Solution.pdb
-J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\obj\Release\MoneyNoCrashMod.csproj.AssemblyReference.cache
-J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\obj\Release\MoneyNoCrashMod.csproj.CoreCompileInputs.cache
 J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\bin\Release\Unity.Postprocessing.Runtime.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\bin\Release\UnityEngine.PhysicsModule.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\bin\Release\UnityEngine.AnimationModule.dll
@@ -94,5 +92,7 @@ J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\bin\Release\LibraryLoade
 J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\bin\Release\Unity.Timeline.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\Build\Mod_MoneyNoCrash_byJet.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\Build\Mod_MoneyNoCrash_byJet.pdb
+J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\obj\Release\MoneyNoCrashMod.csproj.AssemblyReference.cache
+J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\obj\Release\MoneyNoCrashMod.csproj.CoreCompileInputs.cache
 J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\obj\Release\Mod_MoneyNoCrash_byJet.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\MoneyNoCrashMod\obj\Release\Mod_MoneyNoCrash_byJet.pdb

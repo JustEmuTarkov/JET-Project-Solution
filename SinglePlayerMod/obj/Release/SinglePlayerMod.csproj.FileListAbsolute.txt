@@ -1,5 +1,3 @@
-J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\obj\Release\SinglePlayerMod.csproj.AssemblyReference.cache
-J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\obj\Release\SinglePlayerMod.csproj.CoreCompileInputs.cache
 J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\bin\Release\SinglePlayerMod.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\bin\Release\SinglePlayerMod.pdb
 J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\bin\Release\0Harmony.dll
@@ -94,5 +92,7 @@ J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\bin\Release\Unity.Timeli
 J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\bin\Release\JET Project Solution.pdb
 J:\_git\_JET_REPOS\JET-Project-Solution\Build\Mod_SinglePlayer_byJet.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\Build\Mod_SinglePlayer_byJet.pdb
+J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\obj\Release\SinglePlayerMod.csproj.AssemblyReference.cache
+J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\obj\Release\SinglePlayerMod.csproj.CoreCompileInputs.cache
 J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\obj\Release\Mod_SinglePlayer_byJet.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\obj\Release\Mod_SinglePlayer_byJet.pdb

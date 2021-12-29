@@ -91,23 +91,24 @@ namespace JET.Utility
 
         #endregion
 
-        private static string CashedBackendUrl;
+        private static string _backendUrl;
         /// <summary>
         /// Method that returns the Backend Url (Example: https://127.0.0.1)
         /// </summary>
         public static string BackendUrl {
             get 
             {
-                if(CashedBackendUrl == null)
+                //return GClassXXX.Config.BackendUrl;
+                if (_backendUrl == null)
                 {
-                    CashedBackendUrl = Constants.Instance.TargetAssemblyTypes
+                    var ConfigInstance = Constants.Instance.TargetAssemblyTypes
                         .Where(type => type.GetField("DEFAULT_BACKEND_URL", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy) != null)
-                        .FirstOrDefault()
-                        .GetProperty("BackendUrl", BindingFlags.Static | BindingFlags.Public).GetValue(null) as string;
+                        .FirstOrDefault().GetProperty("Config", BindingFlags.Static | BindingFlags.Public).GetValue(null);
+                    _backendUrl = HarmonyLib.Traverse.Create(ConfigInstance).Field("BackendUrl").GetValue() as string;
                 }
-                if (CashedBackendUrl == null)
-                    Debug.LogError("CashedBackendUrl still is null");
-                return CashedBackendUrl;
+                if (_backendUrl == null)
+                    Debug.LogError("_backendUrl still is null");
+                return _backendUrl;
             }
         }
 

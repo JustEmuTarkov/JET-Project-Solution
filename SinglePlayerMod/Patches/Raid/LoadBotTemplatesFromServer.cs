@@ -34,9 +34,16 @@ namespace SinglePlayerMod.Patches.Raid
 
         protected override MethodBase GetTargetMethod()
         {
-            var methods = typeof(BotsPresets).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
-                .Where(method => method.Name == nameof(BotsPresets.CreateProfile) && method.GetParameters().Length == 2);
-            return methods.FirstOrDefault();
+            return typeof(BotsPresets).GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                .Single(x => IsTargetMethod(x));
+        }
+
+        private bool IsTargetMethod(MethodInfo mi)
+        {
+            var parameters = mi.GetParameters();
+            return (parameters.Length == 2
+                && parameters[0].Name == "data"
+                && parameters[1].Name == "cancellationToken");
         }
 
         public static bool PatchPrefix(ref Task<Profile> __result, BotsPresets __instance, BotData data)

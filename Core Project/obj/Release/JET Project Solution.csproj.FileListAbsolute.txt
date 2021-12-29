@@ -58,8 +58,6 @@ J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\bin\Release\UnityEngine.Uni
 J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\bin\Release\UnityEngine.UnityWebRequestTextureModule.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\bin\Release\UnityEngine.IMGUIModule.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\bin\Release\Unity.ScriptableBuildPipeline.dll
-J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\obj\Release\JET Project Solution.csproj.CoreCompileInputs.cache
-J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\obj\Release\JET Project Solution.csproj.CopyComplete
 J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\bin\Release\Unity.Postprocessing.Runtime.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\bin\Release\UnityEngine.PhysicsModule.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\bin\Release\UnityEngine.AnimationModule.dll
@@ -126,5 +124,7 @@ J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\bin\Release\UnityEngine.Inp
 J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\bin\Release\Unity.Timeline.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\Build\NLog.JET_Project.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\Build\NLog.JET_Project.pdb
+J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\obj\Release\JET Project Solution.csproj.CoreCompileInputs.cache
+J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\obj\Release\JET Project Solution.csproj.CopyComplete
 J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\obj\Release\NLog.JET_Project.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\Core Project\obj\Release\NLog.JET_Project.pdb

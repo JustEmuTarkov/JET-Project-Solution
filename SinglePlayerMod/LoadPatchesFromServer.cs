@@ -1,9 +1,10 @@
 ﻿using JET.Utility;
 using Newtonsoft.Json;
+using System;
 
 namespace SinglePlayerMod
 {
-    class LoadPatchesFromServer
+    public class LoadPatchesFromServer
     {
         public static PatchList List_Patch = new PatchList();
         public static PatchNodeList List_PatchNode = new PatchNodeList();
@@ -11,24 +12,12 @@ namespace SinglePlayerMod
         public static void Call()
         {
             var request = new Request(null, ClientAccesor.BackendUrl);
-            try
-            {
-                var json = request.GetJson("/mode/offline");
-                List_Patch = JsonConvert.DeserializeObject<PatchList>(json);
-            }
-            catch
-            {
-                List_Patch = new PatchList();
-            }
-            try
-            {
-                var json = request.GetJson("/mode/offlineNodes");
-                List_PatchNode = JsonConvert.DeserializeObject<PatchNodeList>(json);
-            }
-            catch
-            {
-                List_PatchNode = new PatchNodeList();
-            }
+            var jsonForPatches = request.GetJson("/mode/offline");
+            var jsonForNodes = request.GetJson("/mode/offlineNodes");
+
+
+            List_Patch = JsonConvert.DeserializeObject<PatchList>(jsonForPatches);
+            List_PatchNode = JsonConvert.DeserializeObject<PatchNodeList>(jsonForNodes);
         }
 
         public class PatchList {
