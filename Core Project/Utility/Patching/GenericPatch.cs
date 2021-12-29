@@ -3,9 +3,10 @@ using System.Reflection;
 
 namespace JET.Utility.Patching
 {
-    /*
-     * GenericPatch -> class that makes it easier to write simple patches without too much code invilved  
-     */
+    /// <summary>
+    /// A class that makes it easier to write simple patches without too much code invilved
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class GenericPatch<T> where T : GenericPatch<T>
     {
         private MethodBase _targetMethod = null;

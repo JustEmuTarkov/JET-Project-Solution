@@ -11,11 +11,18 @@ namespace JET.Utility
     public static class ClientAccesor
     {
         #region Get MainApplication Variable
+        /// <summary>
+        /// Method toi get access to ClientApplication Instance
+        /// </summary>
+        /// <returns>ClientApplication</returns>
         public static ClientApplication GetClientApp()
         {
             return Singleton<ClientApplication>.Instance;
         }
-
+        /// <summary>
+        /// Method to get accessto MainApplication instance
+        /// </summary>
+        /// <returns></returns>
         public static MainApplication GetMainApp()
         {
             return GetClientApp() as MainApplication;
@@ -24,6 +31,9 @@ namespace JET.Utility
 
         #region Get GameVersion String
         private static string _gameVersion = "";
+        /// <summary>
+        /// Method that returns a Game version extracted from Assembl-CSharp dll
+        /// </summary>
         public static string GameVersion
         {
             get
@@ -46,7 +56,9 @@ namespace JET.Utility
         #endregion
 
         #region PreloaderUI Instance
-
+        /// <summary>
+        /// Property to get access to PreloaderUI Instance
+        /// </summary>
         public static EFT.UI.PreloaderUI PreloaderUI 
         {
             get 
@@ -59,6 +71,9 @@ namespace JET.Utility
 
         #region Get BetaVersionText Variable
         static EFT.UI.LocalizedText localizedText;
+        /// <summary>
+        /// Access to UI LocalixedText of Betaversion text label
+        /// </summary>
         internal static EFT.UI.LocalizedText BetaVersionLabel {
             get
             {
@@ -77,6 +92,9 @@ namespace JET.Utility
         #endregion
 
         private static string CashedBackendUrl;
+        /// <summary>
+        /// Method that returns the Backend Url (Example: https://127.0.0.1)
+        /// </summary>
         public static string BackendUrl {
             get 
             {

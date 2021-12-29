@@ -15,6 +15,9 @@ namespace JET
         private static IEnumerable<KeyValuePair<Type, ModSettings>> NoDependencies;
         private static KeyValuePair<Type, ModSettings>[]            Remaining;
 
+        /// <summary>
+        /// Constructor that loads all mods and launches them
+        /// </summary>
         internal ModsLoader() {
             if (!InitialLoadingOfFiles())
             {
@@ -87,6 +90,11 @@ namespace JET
             #endregion
         }
 
+        /// <summary>
+        /// Method to load DLL from CustomMods directory with file name supplied to it and returns the types of it
+        /// </summary>
+        /// <param name="filename">file name that you want to include</param>
+        /// <returns>Type[] as GetTypes() from the loaded assembly</returns>
         private static Type[] CustomLoadedAssemblyTypes(string filename) 
         {
             var fullPath = Path.Combine(Utility.Paths.CustomModsDirectory, filename);
@@ -96,6 +104,10 @@ namespace JET
             return assembly.GetTypes();
         }
 
+        /// <summary>
+        /// Loads the Assemblies(DLL's) from CustomMods directory and add them to the list of AvailableMods List
+        /// </summary>
+        /// <returns>Always "true"</returns>
         private static bool InitialLoadingOfFiles() 
         {
             var mods = Directory.GetFiles(Utility.Paths.CustomModsDirectory, "*.dll").ToList();
@@ -122,6 +134,11 @@ namespace JET
             return true;
         }
 
+        /// <summary>
+        /// Method that dearch for dependencies and allow or disallow to load the mod
+        /// </summary>
+        /// <param name="iteration">0 or 1 where 0 is Load with chekcs of all dependencies, 1 is </param>
+        /// <returns></returns>
         private static bool LoadMods(int iteration = 0) {
             // Iteration 0 -> Load mods only if dependencies and soft dependencies are loaded
             // Iteration 1 -> Load mods if dependencies are loaded, ignoring soft dependencies
@@ -156,6 +173,12 @@ namespace JET
             return true;
         }
 
+        /// <summary>
+        /// Method to call Initialize method inside mod instance and launch a mod
+        /// </summary>
+        /// <param name="settings">author, name etc.</param>
+        /// <param name="mod">an instance of mod which holds Initializator method</param>
+        /// <returns></returns>
         private static bool LoadMod(ModSettings settings, out JetMod mod)
         {
             mod = null;

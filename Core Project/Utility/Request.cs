@@ -17,7 +17,14 @@ namespace JET.Utility
             Session = session;
             RemoteEndPoint = remoteEndPoint;
         }
-
+        /// <summary>
+        /// Send request to the server and get Stream of data back
+        /// </summary>
+        /// <param name="url">String url endpoint example: /start</param>
+        /// <param name="method">POST or GET</param>
+        /// <param name="data">string json data</param>
+        /// <param name="compress">Should use compression gzip?</param>
+        /// <returns>Stream or null</returns>
         private Stream Send(string url, string method = "GET", string data = null, bool compress = true)
         {
             // disable SSL encryption

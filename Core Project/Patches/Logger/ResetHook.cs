@@ -5,6 +5,9 @@ using System.Reflection;
 
 namespace JET.Patches.Logger
 {
+    /// <summary>
+    /// Restores the hook after attaching was already done.
+    /// </summary>
     class ResetHook : GenericPatch<ResetHook>
     {
         public ResetHook() : base(postfix: nameof(PatchPostifx)) { }

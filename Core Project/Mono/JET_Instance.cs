@@ -15,13 +15,18 @@ namespace JET.Mono
             public static event Void ApplicationQuitEvent;
             public void OnApplicationQuit() => ApplicationQuitEvent?.Invoke();
         #endregion
-
+        /// <summary>
+        /// Awake method that is called on Mono Start before any other methods
+        /// </summary>
         private void Awake()
         {
             IngameLogger.CheckAndSet();
             Validator.IsGameFound();
             PatchRunner.ExecuteCorePatches();
         }
+        /// <summary>
+        /// Start method that is called on Mono Start after Awake method
+        /// </summary>
         private void Start()
         {
             IngameLogger.CheckAndSet();
@@ -33,11 +38,16 @@ namespace JET.Mono
             new ModsLoader();
             IngameLogger.CheckAndSet();
         }
+        /// <summary>
+        /// LateUpdate method that is called in ticks after all Update methods are called
+        /// </summary>
         private void LateUpdate()
         {
             PerformWatermarking();
         }
-
+        /// <summary>
+        /// Override the BetaVersion Text in left bottom corner of the screen
+        /// </summary>
         void PerformWatermarking() {
             if (ClientAccesor.BetaVersionLabel != null)
             {

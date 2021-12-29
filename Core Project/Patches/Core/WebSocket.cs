@@ -6,6 +6,9 @@ using System.Reflection;
 //x == typeof(GInterface141)
 namespace JET.Patches.Core
 {
+    /// <summary>
+    /// Overrides the websocket from "wss:" to "ws:"
+    /// </summary>
     class WebSocket : GenericPatch<WebSocket>
     {
         public WebSocket() : base(postfix: nameof(PatchPostfix)) { }

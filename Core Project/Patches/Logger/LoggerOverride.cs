@@ -7,6 +7,9 @@ using System.Reflection;
 
 namespace JET.Patches.Logger
 {
+    /// <summary>
+    /// overrides the logger that will save the logs to custom made file
+    /// </summary>
     class LoggerOverride : GenericPatch<LoggerOverride>
     {
         public LoggerOverride() : base(prefix: nameof(LoggerPrefix)) { }
