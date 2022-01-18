@@ -9,19 +9,52 @@ using JET.Utility.Patching;
 using JET.Utility.Reflection;
 using JET.Utility;
 
-using MainMenuController = GClass1536; // .SelectedKeyCard
-using WeatherSettings = GStruct97; // IsRandomTime and IsRandomWeather
-using BotsSettings = GStruct240; // IsScavWars and BotAmount
-using WavesSettings = GStruct99; // IsTaggedAndCursed and IsBosses
-using MatchmakerScreenCreator = EFT.UI.Matchmaker.MatchmakerOfflineRaid.GClass2446; // simply go to class below and search for new gclass, simple as that...
+using MainMenuController = GClass1528; // .SelectedKeyCard
+using WeatherSettings = GStruct101;
+using BotsSettings = GStruct244;
+using WavesSettings = GStruct103;
+//using WeatherSettings  IsRandomTime and IsRandomWeather
+//using BotsSettings  IsScavWars and BotAmount
+//using WavesSettings  IsTaggedAndCursed and IsBosses
+using MatchmakerScreenCreator = EFT.UI.Matchmaker.MatchmakerOfflineRaid.GClass2423; // simply go to class below and search for new gclass, simple as that...
 
 namespace SinglePlayerMod.Patches.ScavMode
 {
     using OfflineRaidAction = Action<bool, WeatherSettings, BotsSettings, WavesSettings>;
     class LoadOfflineRaidScreen : GenericPatch<LoadOfflineRaidScreen>
     {
-
+        /*
+         // GClass1528
+// Token: 0x06006CD2 RID: 27858 RVA: 0x002DCEF8 File Offset: 0x002DB0F8
+private void method_39()
+{
+	if (this.method_41() && this.method_42())
+	{
+		MatchMakerAcceptScreen.GClass2419 gclass = new MatchMakerAcceptScreen.GClass2419(this.ginterface30_0.Session, this.esideType_0, this.SelectedDateTime, this.SelectedLocation, this.bool_0, this.SelectedKeyCard);
+		gclass.OnShowNextScreen += this.method_63;
+		gclass.ShowScreen(EScreenState.Queued);
+		return;
+	}
+}
+         */
         private const string loadReadyScreenMethod = "method_39";
+        /*
+        // GClass1528
+// Token: 0x06006CEC RID: 27884 RVA: 0x002DD388 File Offset: 0x002DB588
+[CompilerGenerated]
+private void method_61(bool local, GStruct101 weatherSettings, GStruct244 botsSettings, GStruct103 wavesSettings)
+{
+	if (this.SelectedLocation.Id == "laboratory")
+	{
+		wavesSettings.IsBosses = true;
+	}
+	this.bool_0 = local;
+	this.gstruct244_0 = botsSettings;
+	this.gstruct103_0 = wavesSettings;
+	this.gstruct101_0 = weatherSettings;
+	this.method_16(null, EMatchingType.Single).HandleExceptions();
+}
+        */
         private const string readyMethod = "method_61";
 
         public LoadOfflineRaidScreen() : base(transpiler: nameof(PatchTranspiler)){}

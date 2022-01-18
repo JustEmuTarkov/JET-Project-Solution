@@ -107,7 +107,10 @@ namespace JET.Utility
                     _backendUrl = HarmonyLib.Traverse.Create(ConfigInstance).Field("BackendUrl").GetValue() as string;
                 }
                 if (_backendUrl == null)
+                {
                     Debug.LogError("_backendUrl still is null");
+                    _backendUrl = "https://127.0.0.1";
+                }
                 return _backendUrl;
             }
         }

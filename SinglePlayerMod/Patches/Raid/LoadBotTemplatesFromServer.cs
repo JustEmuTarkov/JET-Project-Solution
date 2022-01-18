@@ -9,10 +9,10 @@ using Comfort.Common;
 using System.Threading;
 
 //using WaveInfo = GClass984; // not used // search for: Difficulty and chppse gclass with lower number whic hcontains Role and Limit variables
-using BotsPresets = GClass599;
+using BotsPresets = GClass598;
 using BotData = GInterface18;
-using PoolManager = GClass1514;
-using JobPriority = GClass2569;
+using PoolManager = GClass1506;
+using JobPriority = GClass2545;
 
 
 namespace SinglePlayerMod.Patches.Raid

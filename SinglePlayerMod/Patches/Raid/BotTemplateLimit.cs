@@ -5,9 +5,8 @@ using System.Reflection;
 using EFT;
 using JET.Utility;
 using UnityEngine;
-
-using WaveInfo = GClass1257; // search for: Difficulty and chppse gclass with lower number whic hcontains Role and Limit variables
-using BotsPresets = GClass599; // Method: GetNewProfile (higher GClass number)
+using WaveInfo = GClass1250; // search for: Difficulty and chppse gclass with lower number whic hcontains Role and Limit variables
+using BotsPresets = GClass598; // Method: GetNewProfile (higher GClass number)
 // Method: GetNewProfile (higher GClass number)
 
 namespace SinglePlayerMod.Patches.Raid

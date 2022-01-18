@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-using ISpawnPoints = GInterface242;
+using ISpawnPoints = GInterface241;
 
 namespace SinglePlayerMod.Patches.Progression
 {
@@ -38,9 +38,9 @@ namespace SinglePlayerMod.Patches.Progression
         /// <param name="side"></param>
         /// <param name="infiltration"></param>
         /// <returns></returns>
-        public static bool PatchPrefix(ref EFT.Game.Spawning.ISpawnPoint __result, ISpawnPoints ___ginterface242_0, EFT.Game.Spawning.ESpawnCategory category, EFT.EPlayerSide side, string infiltration)
+        public static bool PatchPrefix(ref EFT.Game.Spawning.ISpawnPoint __result, ISpawnPoints ___ginterface241_0, EFT.Game.Spawning.ESpawnCategory category, EFT.EPlayerSide side, string infiltration)
         {
-            var spawnPoints = ___ginterface242_0.ToList();
+            var spawnPoints = ___ginterface241_0.ToList();
 
             var unfilteredSpawnPoints = spawnPoints.ToList();
             var infils = spawnPoints.Select(sp => sp.Infiltration).Distinct();
