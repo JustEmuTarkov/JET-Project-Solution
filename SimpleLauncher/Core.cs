@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace SimpleLauncher
 {
-    class Core
+    public class Core
     {
         /// <summary>
         /// Main application Loop
@@ -13,10 +13,10 @@ namespace SimpleLauncher
         {
             i_Main.Loop();
         }
-        internal static Game Game;
-        internal static Request Request;
-        internal static MainInstance i_Main;
-        internal static CMD CMD;
+        internal static Game Game = new Game();
+        internal static Request Request = new Request();
+        internal static MainInstance i_Main = new MainInstance();
+        internal static CMD CMD = new CMD();
         internal static Settings Config = new Settings();
     }
 }

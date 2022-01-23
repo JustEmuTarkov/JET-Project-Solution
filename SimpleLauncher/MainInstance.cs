@@ -141,22 +141,24 @@ namespace SimpleLauncher
                 {
                     Core.CMD.Write(menuOption.Key, $"- {menuOption.Value}", true, ">");
                 }
-                if (Core.i_Main.GetAppState >= MenuOption.Options)
+                if (Core.i_Main.GetAppState >= MenuOption.Options && Core.i_Main.GetAppState < MenuOption.WelcomeMessage)
                 {
                     Core.CMD.Write("b - Go Back", true, ">");
                 }
                 Core.CMD.Write("q - Close Application", true, ">");
+
+                Core.CMD.Write("[DEBUG] Start", true, "@");
+                Core.CMD.Write($"{Core.i_Main.GetAppState.ToString()}", true, "@");
+                Core.CMD.Write($"{Core.i_Main.GetPrevAppState.ToString()}", true, "@");
+                Core.CMD.Write("[DEBUG] End", true, "@");
+
             }
             private static void ProcessOptionChoosed()
             {
                 Core.CMD.Write("Choose an option (and press Enter)...", true, "");
                 string pressedKey = Console.ReadLine();
-                int optionChoosed = int.Parse(pressedKey);
-                if (optionChoosed >= 0 && optionChoosed <= 9)
-                {
-                    Core.i_Main.SetAppState((MenuOption)optionChoosed);
-                }
-                else
+                int optionChoosed = -1;
+                if (!int.TryParse(pressedKey, out optionChoosed))
                 {
                     if (pressedKey.ToLower() == "b")
                     {
@@ -166,6 +168,11 @@ namespace SimpleLauncher
                     {
                         Core.i_Main.Stop = true;
                     }
+                    return;
+                }
+                if (optionChoosed >= 0 && optionChoosed <= 9)
+                {
+                    Core.i_Main.SetAppState((MenuOption)optionChoosed);
                 }
             }
             internal static void WelcomeMessage()

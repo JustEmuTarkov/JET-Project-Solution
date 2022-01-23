@@ -1,0 +1,24 @@
+.vs
+
+Build/*.pdb
+Build/*.dll
+
+Core Project\.vs
+Core Project\obj
+Core Project\obj\Release
+Core Project\obj\Debug
+
+MoneyNoCrashMod\.vs
+MoneyNoCrashMod\obj
+MoneyNoCrashMod\obj\Release
+MoneyNoCrashMod\obj\Debug
+
+SimpleLauncher\.vs
+SimpleLauncher\obj
+SimpleLauncher\obj\Release
+SimpleLauncher\obj\Debug
+
+SinglePlayerMod\.vs
+SinglePlayerMod\obj
+SinglePlayerMod\obj\Release
+SinglePlayerMod\obj\Debug
