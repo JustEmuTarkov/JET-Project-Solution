@@ -101,10 +101,16 @@ namespace JET.Utility
                 //return GClassXXX.Config.BackendUrl;
                 if (_backendUrl == null)
                 {
-                    var ConfigInstance = Constants.Instance.TargetAssemblyTypes
-                        .Where(type => type.GetField("DEFAULT_BACKEND_URL", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy) != null)
-                        .FirstOrDefault().GetProperty("Config", BindingFlags.Static | BindingFlags.Public).GetValue(null);
-                    _backendUrl = HarmonyLib.Traverse.Create(ConfigInstance).Field("BackendUrl").GetValue() as string;
+                    try
+                    {
+                        var ConfigInstance = Constants.Instance.TargetAssemblyTypes
+                            .Where(type => type.GetField("DEFAULT_BACKEND_URL", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy) != null)
+                            .FirstOrDefault().GetProperty("Config", BindingFlags.Static | BindingFlags.Public).GetValue(null);
+                        _backendUrl = HarmonyLib.Traverse.Create(ConfigInstance).Field("BackendUrl").GetValue() as string;
+                    }
+                    catch (Exception e) {
+                        Debug.LogError($"{e.Message} -> {e.StackTrace}");
+                    }
                 }
                 if (_backendUrl == null)
                 {

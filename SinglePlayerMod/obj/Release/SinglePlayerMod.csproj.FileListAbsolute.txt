@@ -96,3 +96,9 @@ J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\obj\Release\SinglePlayer
 J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\obj\Release\SinglePlayerMod.csproj.CoreCompileInputs.cache
 J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\obj\Release\Mod_SinglePlayer_byJet.dll
 J:\_git\_JET_REPOS\JET-Project-Solution\SinglePlayerMod\obj\Release\Mod_SinglePlayer_byJet.pdb
+R:\#Tarkov\#JET\JET-Project-Solution\Build\Mod_SinglePlayer_byJet.dll
+R:\#Tarkov\#JET\JET-Project-Solution\Build\Mod_SinglePlayer_byJet.pdb
+R:\#Tarkov\#JET\JET-Project-Solution\SinglePlayerMod\obj\Release\SinglePlayerMod.csproj.AssemblyReference.cache
+R:\#Tarkov\#JET\JET-Project-Solution\SinglePlayerMod\obj\Release\SinglePlayerMod.csproj.CoreCompileInputs.cache
+R:\#Tarkov\#JET\JET-Project-Solution\SinglePlayerMod\obj\Release\Mod_SinglePlayer_byJet.dll
+R:\#Tarkov\#JET\JET-Project-Solution\SinglePlayerMod\obj\Release\Mod_SinglePlayer_byJet.pdb

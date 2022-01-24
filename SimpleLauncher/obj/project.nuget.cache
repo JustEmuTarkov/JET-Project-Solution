@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "uaoTFKFE4c3NeMFWvdYw3iKzKFVIYlQVNW83w7rzXD0shCXz1PX4FpdFO5MjKApKXy5vJ/7IsCYZy+Wg7+YZ3A==",
+  "success": true,
+  "projectFilePath": "R:\\#Tarkov\\#JET\\JET-Project-Solution\\SimpleLauncher\\SimpleLauncher.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\X\\.nuget\\packages\\sharpziplib\\1.3.3\\sharpziplib.1.3.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,6 @@
+R:\#Tarkov\#JET\JET-Project-Solution\Build\Mod_MoneyNoCrash_byJet.dll
+R:\#Tarkov\#JET\JET-Project-Solution\Build\Mod_MoneyNoCrash_byJet.pdb
+R:\#Tarkov\#JET\JET-Project-Solution\MoneyNoCrashMod\obj\Release\MoneyNoCrashMod.csproj.AssemblyReference.cache
+R:\#Tarkov\#JET\JET-Project-Solution\MoneyNoCrashMod\obj\Release\MoneyNoCrashMod.csproj.CoreCompileInputs.cache
+R:\#Tarkov\#JET\JET-Project-Solution\MoneyNoCrashMod\obj\Release\Mod_MoneyNoCrash_byJet.dll
+R:\#Tarkov\#JET\JET-Project-Solution\MoneyNoCrashMod\obj\Release\Mod_MoneyNoCrash_byJet.pdb

@@ -1,0 +1,7 @@
+R:\#Tarkov\#JET\JET-Project-Solution\Build\NLog.JET_Project.dll
+R:\#Tarkov\#JET\JET-Project-Solution\Build\NLog.JET_Project.pdb
+R:\#Tarkov\#JET\JET-Project-Solution\Core Project\obj\Release\JET Project Solution.csproj.AssemblyReference.cache
+R:\#Tarkov\#JET\JET-Project-Solution\Core Project\obj\Release\JET Project Solution.csproj.CoreCompileInputs.cache
+R:\#Tarkov\#JET\JET-Project-Solution\Core Project\obj\Release\JET Project Solution.csproj.CopyComplete
+R:\#Tarkov\#JET\JET-Project-Solution\Core Project\obj\Release\NLog.JET_Project.dll
+R:\#Tarkov\#JET\JET-Project-Solution\Core Project\obj\Release\NLog.JET_Project.pdb

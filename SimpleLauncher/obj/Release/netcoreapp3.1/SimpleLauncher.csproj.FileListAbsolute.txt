@@ -1,0 +1,16 @@
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\bin\Release\netcoreapp3.1\SimpleLauncher.exe
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\bin\Release\netcoreapp3.1\SimpleLauncher.deps.json
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\bin\Release\netcoreapp3.1\SimpleLauncher.runtimeconfig.json
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\bin\Release\netcoreapp3.1\SimpleLauncher.runtimeconfig.dev.json
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\bin\Release\netcoreapp3.1\SimpleLauncher.dll
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\bin\Release\netcoreapp3.1\SimpleLauncher.pdb
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\bin\Release\netcoreapp3.1\ICSharpCode.SharpZipLib.dll
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\obj\Release\netcoreapp3.1\SimpleLauncher.csproj.AssemblyReference.cache
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\obj\Release\netcoreapp3.1\SimpleLauncher.GeneratedMSBuildEditorConfig.editorconfig
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\obj\Release\netcoreapp3.1\SimpleLauncher.AssemblyInfoInputs.cache
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\obj\Release\netcoreapp3.1\SimpleLauncher.AssemblyInfo.cs
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\obj\Release\netcoreapp3.1\SimpleLauncher.csproj.CoreCompileInputs.cache
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\obj\Release\netcoreapp3.1\SimpleLauncher.csproj.CopyComplete
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\obj\Release\netcoreapp3.1\SimpleLauncher.dll
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\obj\Release\netcoreapp3.1\SimpleLauncher.pdb
+R:\#Tarkov\#JET\JET-Project-Solution\SimpleLauncher\obj\Release\netcoreapp3.1\SimpleLauncher.genruntimeconfig.cache
