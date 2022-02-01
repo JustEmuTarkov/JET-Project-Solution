@@ -50,6 +50,7 @@ namespace SinglePlayerMod
             public bool SpawnRandomizationMod = true;
             public bool TinnitusFix = true;
             public bool LoadOfflineRaidScreen = true;
+            public bool DisableScavMode = true;
             public bool ScavExfilFix = true;
             public bool ScavPrefabLoad = true;
             public bool ScavProfileLoad = true;

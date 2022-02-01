@@ -132,6 +132,8 @@ namespace SinglePlayerMod
         {
             if (LoadPatchesFromServer.List_PatchNode.ScavMode)
             {
+                if (LoadPatchesFromServer.List_Patch.DisableScavMode)
+                    HarmonyPatch.Patch<Patches.ScavMode.DisableScavMode>();
                 if (LoadPatchesFromServer.List_Patch.LoadOfflineRaidScreen)
                     HarmonyPatch.Patch<Patches.ScavMode.LoadOfflineRaidScreen>();
                 if (LoadPatchesFromServer.List_Patch.ScavExfilFix)

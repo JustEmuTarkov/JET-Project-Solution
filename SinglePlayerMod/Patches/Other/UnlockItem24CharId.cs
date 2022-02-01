@@ -11,6 +11,9 @@ using UnityEngine;
 
 namespace SinglePlayerMod.Patches.Other
 {
+    /// <summary>
+    /// This patch unlocks the 24 character ID's of items restriction for trader selling
+    /// </summary>
     class UnlockItem24CharId : GenericPatch<UnlockItem24CharId>
     {
         public UnlockItem24CharId() : base(transpiler: nameof(PatchTranspile)) { }

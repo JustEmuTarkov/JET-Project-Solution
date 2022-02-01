@@ -11,6 +11,7 @@ namespace SinglePlayerMod.Patches.Raid
     /// <summary>
     /// Fixes the problem of the tinnitus sound effect being played on the player if any AI on the map get the contusion effect applied to them
     /// The patch adds an extra condition to the check before playing the sound effect, making sure the sound is only played if contusion occurred on the player
+    /// PS: This Patch is not working. (throwing errors in the client)
     /// </summary>
     class TinnitusFix : GenericPatch<TinnitusFix>
     {

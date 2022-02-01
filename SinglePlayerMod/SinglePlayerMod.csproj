@@ -110,6 +110,7 @@
     <Compile Include="Patches\Raid\SpawnPmc.cs" />
     <Compile Include="Patches\Raid\SpawnRandomizationMod.cs" />
     <Compile Include="Patches\Raid\TinnitusFix.cs" />
+    <Compile Include="Patches\ScavMode\DisableScavMode.cs" />
     <Compile Include="Patches\ScavMode\LoadOfflineRaidScreen.cs" />
     <Compile Include="Patches\ScavMode\ScavExfilFix.cs" />
     <Compile Include="Patches\ScavMode\ScavPrefabLoad.cs" />
