@@ -1,0 +1,4 @@
+copy /y "$(SolutionDir)Build\_Compiled\netcoreapp3.1\ICSharpCode.SharpZipLib.dll" "$(SolutionDir)Build\ICSharpCode.SharpZipLib.dll"
+copy /y "$(SolutionDir)Build\_Compiled\netcoreapp3.1\SimpleLauncher.dll" "$(SolutionDir)Build\SimpleLauncher.dll"
+copy /y "$(SolutionDir)Build\_Compiled\netcoreapp3.1\SimpleLauncher.exe" "$(SolutionDir)Build\SimpleLauncher.exe"
+copy /y "$(SolutionDir)Build\_Compiled\netcoreapp3.1\SimpleLauncher.runtimeconfig.json" "$(SolutionDir)Build\SimpleLauncher.runtimeconfig.json"

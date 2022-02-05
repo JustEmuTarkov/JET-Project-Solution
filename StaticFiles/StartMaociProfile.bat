@@ -1,0 +1,1 @@
+start EscapeFromTarkov.exe -token=AID8131647517931710690RF -config={"BackendUrl":"https://127.0.0.1:443","Version":"live"}

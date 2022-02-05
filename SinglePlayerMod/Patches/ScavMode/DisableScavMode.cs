@@ -9,7 +9,7 @@ namespace SinglePlayerMod.Patches.ScavMode
     /// </summary>
     class DisableScavMode : GenericPatch<DisableScavMode>
     {
-        static Vector3 PMCs_NewPosition = new Vector3(732.3394f, 540f, 0f); // position of PMC box inside UI (global position)
+        //static Vector3 PMCs_NewPosition = new Vector3(732.3394f, 540f, 0f); // position of PMC box inside UI (global position)
 
         static DisableScavMode() { }
 
@@ -26,7 +26,13 @@ namespace SinglePlayerMod.Patches.ScavMode
             UnityEngine.UI.Button ____pmcBigButton)
         {
             ____savagesBigButton.transform.parent.gameObject.SetActive(false);
-            ____pmcBigButton.transform.parent.transform.position = PMCs_NewPosition;
+            ____pmcBigButton.transform.parent.transform.localPosition = new Vector3(-220, 500, 0);
+            RectTransform tempRectTransform = ____pmcBigButton.GetComponent<RectTransform>();
+            tempRectTransform.anchoredPosition = new Vector2(-220, 0);
+            tempRectTransform.offsetMax = new Vector2(-220, 0);
+            tempRectTransform.offsetMin = new Vector2(-220, 0);
+            tempRectTransform.anchoredPosition3D = new Vector3(0, 0, 0);
+
         }
     }
 }

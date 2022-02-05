@@ -147,10 +147,10 @@ namespace SimpleLauncher
                 }
                 Core.CMD.Write("q - Close Application", true, ">");
 
-                Core.CMD.Write("[DEBUG] Start", true, "@");
-                Core.CMD.Write($"{Core.i_Main.GetAppState.ToString()}", true, "@");
-                Core.CMD.Write($"{Core.i_Main.GetPrevAppState.ToString()}", true, "@");
-                Core.CMD.Write("[DEBUG] End", true, "@");
+                //Core.CMD.Write("[DEBUG] Start", true, "@");
+                //Core.CMD.Write($"{Core.i_Main.GetAppState.ToString()}", true, "@");
+                //Core.CMD.Write($"{Core.i_Main.GetPrevAppState.ToString()}", true, "@");
+                //Core.CMD.Write("[DEBUG] End", true, "@");
 
             }
             private static void ProcessOptionChoosed()
