@@ -175,7 +175,7 @@
     <PostBuildEvent>copy /y "$(TargetDir)$(AssemblyName).dll" "$(SolutionDir)Build\EscapeFromTarkov_Data\Managed\$(AssemblyName).dll"
 copy /y "$(TargetDir)Assembly-CSharp.dll" "$(SolutionDir)Build\EscapeFromTarkov_Data\Managed\Assembly-CSharp.dll"
 copy /y "$(TargetDir)0Harmony.dll" "$(SolutionDir)Build\EscapeFromTarkov_Data\Managed\0Harmony.dll"
-copy /y "$(SolutionDir)ConfigFiles\NLog.dll.nlog" "$(SolutionDir)Build\EscapeFromTarkov_Data\Managed\NLog.dll.nlog"
-copy /y "$(SolutionDir)ConfigFiles\StartMaociProfile.bat" "$(SolutionDir)Build\StartMaociProfile.bat"</PostBuildEvent>
+copy /y "$(SolutionDir)StaticFiles\NLog.dll.nlog" "$(SolutionDir)Build\EscapeFromTarkov_Data\Managed\NLog.dll.nlog"
+copy /y "$(SolutionDir)StaticFiles\StartMaociProfile.bat" "$(SolutionDir)Build\StartMaociProfile.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>
