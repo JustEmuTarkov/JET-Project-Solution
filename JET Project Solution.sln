@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyNoCrashMod", "MoneyNoC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinglePlayerMod", "SinglePlayerMod\SinglePlayerMod.csproj", "{257B1185-F890-470E-BB0E-214319A1DCA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleLauncher", "SimpleLauncher\SimpleLauncher.csproj", "{6795C411-3B18-4BDC-AEFD-ED7DD94D9FF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleLauncher", "SimpleLauncher\SimpleLauncher.csproj", "{6795C411-3B18-4BDC-AEFD-ED7DD94D9FF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BundleLoaderMod", "BundleLoaderMod\BundleLoaderMod.csproj", "{0E2EBE38-4D78-4611-8C3C-ACB5D840CE54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6795C411-3B18-4BDC-AEFD-ED7DD94D9FF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6795C411-3B18-4BDC-AEFD-ED7DD94D9FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6795C411-3B18-4BDC-AEFD-ED7DD94D9FF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E2EBE38-4D78-4611-8C3C-ACB5D840CE54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E2EBE38-4D78-4611-8C3C-ACB5D840CE54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E2EBE38-4D78-4611-8C3C-ACB5D840CE54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E2EBE38-4D78-4611-8C3C-ACB5D840CE54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
