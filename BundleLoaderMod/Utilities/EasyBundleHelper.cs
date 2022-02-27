@@ -38,7 +38,7 @@ public sealed class GClass2563<T> : GClass2562<T>
 #endregion
 using BindableState = GClass2563<Diz.DependencyManager.ELoadState>;
 
-namespace BundleLoaderMod.Utilities
+namespace BundleLoader.Utilities
 {
     class EasyBundleHelper
     {

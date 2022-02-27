@@ -10,15 +10,16 @@ namespace JET
 {
     class ModsLoader
     {
-        internal static readonly List<JetMod>                       ModInstances = new List<JetMod>();
-        private static Dictionary<Type, ModSettings>                AvailableMods = new Dictionary<Type, ModSettings>();
+        internal static readonly List<JetMod> ModInstances = new List<JetMod>();
+        private static Dictionary<Type, ModSettings> AvailableMods = new Dictionary<Type, ModSettings>();
         private static IEnumerable<KeyValuePair<Type, ModSettings>> NoDependencies;
-        private static KeyValuePair<Type, ModSettings>[]            Remaining;
+        private static KeyValuePair<Type, ModSettings>[] Remaining;
 
         /// <summary>
         /// Constructor that loads all mods and launches them
         /// </summary>
-        internal ModsLoader() {
+        internal ModsLoader()
+        {
             if (!InitialLoadingOfFiles())
             {
                 Debug.Log($"Mods count is equal to 0. Skipping loading of the custom mods");
@@ -95,7 +96,7 @@ namespace JET
         /// </summary>
         /// <param name="filename">file name that you want to include</param>
         /// <returns>Type[] as GetTypes() from the loaded assembly</returns>
-        private static Type[] CustomLoadedAssemblyTypes(string filename) 
+        private static Type[] CustomLoadedAssemblyTypes(string filename)
         {
             var fullPath = Path.Combine(Utility.Paths.CustomModsDirectory, filename);
             // Read the file before loading so the dll file doesn't stay locked.
@@ -108,7 +109,7 @@ namespace JET
         /// Loads the Assemblies(DLL's) from CustomMods directory and add them to the list of AvailableMods List
         /// </summary>
         /// <returns>Always "true"</returns>
-        private static bool InitialLoadingOfFiles() 
+        private static bool InitialLoadingOfFiles()
         {
             var mods = Directory.GetFiles(Utility.Paths.CustomModsDirectory, "*.dll").ToList();
 
@@ -116,15 +117,25 @@ namespace JET
 
             foreach (var file in mods)
             {
-                var LoadedTypes = CustomLoadedAssemblyTypes(file);
-                LoadedTypes = LoadedTypes.Where(x => x.IsClass && x.BaseType == typeof(JetMod)).ToArray();
-                if (LoadedTypes.Length > 1)
+                Type[] loadedTypes;
+                try
+                {
+                    loadedTypes = CustomLoadedAssemblyTypes(file);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Failed to load {Path.GetFileName(file)}. {e}");
+                    continue;
+                }
+
+                loadedTypes = loadedTypes.Where(x => x.IsClass && x.BaseType == typeof(JetMod)).ToArray();
+                if (loadedTypes.Length > 1)
                 {
                     Debug.LogError($"Failed to load {Path.GetFileName(file)}. You may only have one class that inherits from {nameof(JetMod)}.");
                     continue;
                 }
 
-                var type = LoadedTypes.FirstOrDefault();
+                var type = loadedTypes.FirstOrDefault();
                 // DLL file is not a mod and is likely a dependency. Keep it loaded and continue.
                 if (type == default)
                     continue;
@@ -139,7 +150,8 @@ namespace JET
         /// </summary>
         /// <param name="iteration">0 or 1 where 0 is Load with chekcs of all dependencies, 1 is </param>
         /// <returns></returns>
-        private static bool LoadMods(int iteration = 0) {
+        private static bool LoadMods(int iteration = 0)
+        {
             // Iteration 0 -> Load mods only if dependencies and soft dependencies are loaded
             // Iteration 1 -> Load mods if dependencies are loaded, ignoring soft dependencies
             while (Remaining.Length > 0)
@@ -153,11 +165,13 @@ namespace JET
                         if (!settings.DependsOn.Select(x => ModInstances.Any(y => y.GetType() == x)).All(x => x) ||
                         !settings.SoftDependsOn.Select(x => ModInstances.Any(y => y.GetType() == x)).All(x => x))
                             continue;
-                    } else {
+                    }
+                    else
+                    {
                         if (!settings.DependsOn.Select(x => ModInstances.Any(y => y.GetType() == x)).All(x => x))
                             continue;
                     }
-                    
+
                     if (!LoadMod(settings, out var mod)) continue;
 
                     ModInstances.Add(mod);

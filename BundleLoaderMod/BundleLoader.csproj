@@ -7,8 +7,8 @@
     <ProjectGuid>{0E2EBE38-4D78-4611-8C3C-ACB5D840CE54}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BundleLoaderMod</RootNamespace>
-    <AssemblyName>BundleLoaderMod</AssemblyName>
+    <RootNamespace>BundleLoader</RootNamespace>
+    <AssemblyName>BundleLoader</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -86,7 +86,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Initializator.cs" />
+    <Compile Include="BundleLoaderMod.cs" />
     <Compile Include="Patches\BundleLoad.cs" />
     <Compile Include="Patches\EasyAssets.cs" />
     <Compile Include="Patches\EasyBundle.cs" />

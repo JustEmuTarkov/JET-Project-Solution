@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace JET.Utility
 {
@@ -11,9 +12,6 @@ namespace JET.Utility
         /// <summary>
         /// Returns a path where Client Mods are located
         /// </summary>
-        public static string CustomModsDirectory
-        {
-            get => System.IO.Path.Combine(Utility.Paths.GetGameDirectory, "ClientMods");
-        }
+        public static string CustomModsDirectory => Path.Combine(GetGameDirectory, "ClientMods");
     }
 }

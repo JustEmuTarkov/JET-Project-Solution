@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace BundleLoaderMod.Patches
+namespace BundleLoader.Patches
 {
     public class BundleLoad : GenericPatch<BundleLoad>
     {

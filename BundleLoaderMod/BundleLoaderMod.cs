@@ -4,21 +4,23 @@
  */
 
 using JET.Utility.Modding;
+using JET.Utility.Patching;
 using System;
 using System.Collections.Generic;
+using BundleLoader.Patches;
 
-namespace BundleLoaderMod
+namespace BundleLoader
 {
-    public class Initializator : JetMod
+    public class BundleLoaderMod : JetMod
     {
         protected override void Initialize(IReadOnlyDictionary<Type, JetMod> dependencies, string gameVersion)
         {
             // this mod is still in progress and is not finished !!!!
 
-            //JET.Utility.Patching.HarmonyPatch.Patch<Patches.DisplayMoneyPanel>();
+            HarmonyPatch.Patch<BundleLoad>();
+            HarmonyPatch.Patch<EasyAssets>();
+            HarmonyPatch.Patch<EasyBundle>();
         }
-        public static string OriginalCreator = "AppeazeTheCheese";
-        public static string MutualCreators = "AppeazeTheCheese,TheMaoci";
     }
 
 }
