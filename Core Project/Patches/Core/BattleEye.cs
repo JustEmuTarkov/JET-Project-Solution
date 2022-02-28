@@ -8,14 +8,14 @@ namespace JET.Patches.Core
 	/// <summary>
 	/// Patches the RunValidation method to not execute any of its code and set variable Succeed to true
 	/// </summary>
-    class BattlEye : GenericPatch<BattlEye>
+    class BattleEye : GenericPatch<BattleEye>
 	{
 		public static PropertyInfo __property;
 
 		private string _MethodName = "RunValidation"; // method to patch
 		private string _FieldName = "Succeed"; // variable to override
 
-		public BattlEye() : base(prefix: nameof(PatchPrefix)) { }
+		public BattleEye() : base(prefix: nameof(PatchPrefix)) { }
 
 		protected override MethodBase GetTargetMethod()
 		{

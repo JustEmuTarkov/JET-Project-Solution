@@ -130,7 +130,7 @@
     <Compile Include="FakeModels\CertificateHandler.cs" />
     <Compile Include="ModsLoader.cs" />
     <Compile Include="Mono\JET_Instance.cs" />
-    <Compile Include="Patches\Core\BattlEye.cs" />
+    <Compile Include="Patches\Core\BattleEye.cs" />
     <Compile Include="Patches\Core\FileChecker_Override.cs" />
     <Compile Include="Patches\Core\NotificationSsl.cs" />
     <Compile Include="Patches\Core\SslCertificate.cs" />

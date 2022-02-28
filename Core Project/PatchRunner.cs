@@ -1,4 +1,5 @@
-﻿using JET.Utility.Patching;
+﻿using JET.Patches.Core;
+using JET.Utility.Patching;
 
 namespace JET
 {
@@ -10,11 +11,11 @@ namespace JET
         internal static void ExecuteCorePatches() 
         {
             // Order is crucial
-            HarmonyPatch.Patch<Patches.Core.FileChecker_Override>();
-            HarmonyPatch.Patch<Patches.Core.BattlEye>();
-            HarmonyPatch.Patch<Patches.Core.NotificationSsl>();
-            HarmonyPatch.Patch<Patches.Core.SslCertificate>();
-            HarmonyPatch.Patch<Patches.Core.UnityWebRequest>();
+            HarmonyPatch.Patch<FileChecker_Override>();
+            HarmonyPatch.Patch<BattleEye>();
+            HarmonyPatch.Patch<NotificationSsl>();
+            HarmonyPatch.Patch<SslCertificate>();
+            HarmonyPatch.Patch<UnityWebRequest>();
         }
         /// <summary>
         /// Method that runs Patches to Override the logger ingame and adds a custom logger inside enabling full logging for debugging
