@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace BundleLoaderMod
+namespace BundleLoader
 {
     public static class Shared
     {

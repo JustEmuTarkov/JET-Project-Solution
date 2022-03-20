@@ -1,14 +1,14 @@
-﻿using BundleLoaderMod.Utilities;
-using Diz.DependencyManager;
+﻿using Diz.DependencyManager;
 using JET.Utility.Patching;
 using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using BundleLoader.Utilities;
 using UnityEngine;
 
-namespace BundleLoaderMod.Patches
+namespace BundleLoader.Patches
 {
     public class EasyBundle : GenericPatch<EasyBundle>
     {

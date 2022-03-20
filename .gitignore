@@ -1,6 +1,5 @@
-.vs
-
 Build/
+_PreparedBuild/
 obj/
 .vs/
 bin/

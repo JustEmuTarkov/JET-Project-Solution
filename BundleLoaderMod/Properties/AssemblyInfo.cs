@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using JET.Utility.Modding;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
@@ -18,6 +19,7 @@ using System.Runtime.InteropServices;
 // to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
+[assembly: ModInfo("Bundle Loader", "AppeazeTheCheese, TheMaoci", "2.0.0")]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("0e2ebe38-4d78-4611-8c3c-acb5d840ce54")]

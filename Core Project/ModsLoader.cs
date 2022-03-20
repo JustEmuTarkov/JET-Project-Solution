@@ -4,44 +4,39 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 namespace JET
 {
-    class ModsLoader
+    internal class ModsLoader
     {
-        internal static readonly List<JetMod>                       ModInstances = new List<JetMod>();
-        private static Dictionary<Type, ModSettings>                AvailableMods = new Dictionary<Type, ModSettings>();
-        private static IEnumerable<KeyValuePair<Type, ModSettings>> NoDependencies;
-        private static KeyValuePair<Type, ModSettings>[]            Remaining;
+        internal static readonly List<JetMod> ModInstances = new List<JetMod>();
+        private static readonly Dictionary<Type, ModSettings> AvailableMods = new Dictionary<Type, ModSettings>();
 
         /// <summary>
         /// Constructor that loads all mods and launches them
         /// </summary>
-        internal ModsLoader() {
-            if (!InitialLoadingOfFiles())
-            {
-                Debug.Log($"Mods count is equal to 0. Skipping loading of the custom mods");
-            }
+        internal ModsLoader()
+        {
+            PopulateAvailableMods();
 
-            NoDependencies = AvailableMods.Where(x => !x.Value.DependsOn.Any() && !x.Value.SoftDependsOn.Any());
-            Remaining = AvailableMods.Where(x => !NoDependencies.Contains(x)).ToArray();
+            var noDependencies = AvailableMods.Where(x => !x.Value.DependsOn.Any() && !x.Value.SoftDependsOn.Any()).ToArray();
+            var remaining = AvailableMods.Except(noDependencies).ToDictionary(x => x.Key, x => x.Value);
 
             // Load mods without dependencies first for less recursion (hopefully)
-            foreach (var (type, settings) in NoDependencies)
+            foreach (var (type, settings) in noDependencies)
             {
                 if (!LoadMod(settings, out var mod)) continue;
                 ModInstances.Add(mod);
                 Debug.Log($"Mod {type.FullName} loaded successfully");
             }
 
-            for (int iter = 0; iter < 2; iter++)
-            {
-                LoadMods(iter);
-            }
-
             // Remaining mods have required dependencies that don't exist
-            foreach (var (type, settings) in Remaining)
+            remaining = LoadModsWithDependencies(remaining, false);
+            remaining = LoadModsWithDependencies(remaining, true);
+
+            foreach (var (type, settings) in remaining)
             {
                 var missing = settings.DependsOn.Where(x => ModInstances.All(y => y.GetType() != x));
                 var missingList = missing.Select(x => x.FullName);
@@ -95,7 +90,7 @@ namespace JET
         /// </summary>
         /// <param name="filename">file name that you want to include</param>
         /// <returns>Type[] as GetTypes() from the loaded assembly</returns>
-        private static Type[] CustomLoadedAssemblyTypes(string filename) 
+        private static Type[] CustomLoadedAssemblyTypes(string filename)
         {
             var fullPath = Path.Combine(Utility.Paths.CustomModsDirectory, filename);
             // Read the file before loading so the dll file doesn't stay locked.
@@ -105,72 +100,81 @@ namespace JET
         }
 
         /// <summary>
-        /// Loads the Assemblies(DLL's) from CustomMods directory and add them to the list of AvailableMods List
+        /// Loads Assemblies from the CustomMods directory and adds them to the AvailableMods List
         /// </summary>
-        /// <returns>Always "true"</returns>
-        private static bool InitialLoadingOfFiles() 
+        private static void PopulateAvailableMods()
         {
             var mods = Directory.GetFiles(Utility.Paths.CustomModsDirectory, "*.dll").ToList();
 
-            if (mods.Count == 0) return false;
+            if (mods.Count == 0)
+            {
+                Debug.Log("There are no mods to load.");
+                return;
+            };
 
             foreach (var file in mods)
             {
-                var LoadedTypes = CustomLoadedAssemblyTypes(file);
-                LoadedTypes = LoadedTypes.Where(x => x.IsClass && x.BaseType == typeof(JetMod)).ToArray();
-                if (LoadedTypes.Length > 1)
+                Type[] loadedTypes;
+                try
+                {
+                    loadedTypes = CustomLoadedAssemblyTypes(file);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Failed to load {Path.GetFileName(file)}. {e}");
+                    continue;
+                }
+
+                loadedTypes = loadedTypes.Where(x => x.IsClass && x.BaseType == typeof(JetMod)).ToArray();
+                if (loadedTypes.Length > 1)
                 {
                     Debug.LogError($"Failed to load {Path.GetFileName(file)}. You may only have one class that inherits from {nameof(JetMod)}.");
                     continue;
                 }
 
-                var type = LoadedTypes.FirstOrDefault();
+                var type = loadedTypes.FirstOrDefault();
                 // DLL file is not a mod and is likely a dependency. Keep it loaded and continue.
                 if (type == default)
                     continue;
 
                 AvailableMods.Add(type, new ModSettings(type));
             }
-            return true;
         }
 
         /// <summary>
-        /// Method that dearch for dependencies and allow or disallow to load the mod
+        /// Method that search for dependencies and allow or disallow to load the mod
         /// </summary>
-        /// <param name="iteration">0 or 1 where 0 is Load with chekcs of all dependencies, 1 is </param>
-        /// <returns></returns>
-        private static bool LoadMods(int iteration = 0) {
-            // Iteration 0 -> Load mods only if dependencies and soft dependencies are loaded
-            // Iteration 1 -> Load mods if dependencies are loaded, ignoring soft dependencies
-            while (Remaining.Length > 0)
+        /// <param name="mods">List of mods to load</param>
+        /// <param name="ignoreSoftDependencies">Whether or not to ignore soft dependencies</param>
+        /// <returns>A list of mods that weren't loaded</returns>
+        private static Dictionary<Type, ModSettings> LoadModsWithDependencies(IReadOnlyDictionary<Type, ModSettings> mods, bool ignoreSoftDependencies)
+        {
+            var remaining = new Dictionary<Type, ModSettings>(mods.ToDictionary(x => x.Key, x => x.Value));
+
+            while (remaining.Count > 0)
             {
                 var modsLoaded = 0;
-                var newRemaining = Remaining.ToList();
-                foreach (var (type, settings) in Remaining)
+                foreach (var (type, settings) in mods)
                 {
-                    if (iteration == 0)
-                    {
-                        if (!settings.DependsOn.Select(x => ModInstances.Any(y => y.GetType() == x)).All(x => x) ||
-                        !settings.SoftDependsOn.Select(x => ModInstances.Any(y => y.GetType() == x)).All(x => x))
-                            continue;
-                    } else {
-                        if (!settings.DependsOn.Select(x => ModInstances.Any(y => y.GetType() == x)).All(x => x))
-                            continue;
-                    }
-                    
+                    var allDependencies =
+                        settings.DependsOn.Concat(ignoreSoftDependencies ? new Type[] { } : settings.SoftDependsOn);
+                    var isMissingDependencies = !allDependencies.All(x => ModInstances.Any(y => y.GetType() == x));
+
+                    if(isMissingDependencies) continue;
+
                     if (!LoadMod(settings, out var mod)) continue;
 
                     ModInstances.Add(mod);
-                    newRemaining.RemoveFirst(x => x.Key == type);
+                    remaining.Remove(type);
                     modsLoaded++;
                     Debug.Log($"Mod {type.FullName} loaded successfully");
                 }
 
-                Remaining = newRemaining.ToArray();
                 if (modsLoaded == 0)
                     break;
             }
-            return true;
+
+            return remaining;
         }
 
         /// <summary>

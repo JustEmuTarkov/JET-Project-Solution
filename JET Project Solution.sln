@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SinglePlayerMod", "SinglePl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleLauncher", "SimpleLauncher\SimpleLauncher.csproj", "{6795C411-3B18-4BDC-AEFD-ED7DD94D9FF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BundleLoaderMod", "BundleLoaderMod\BundleLoaderMod.csproj", "{0E2EBE38-4D78-4611-8C3C-ACB5D840CE54}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BundleLoader", "BundleLoaderMod\BundleLoader.csproj", "{0E2EBE38-4D78-4611-8C3C-ACB5D840CE54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

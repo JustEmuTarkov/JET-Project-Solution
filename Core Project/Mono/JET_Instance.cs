@@ -22,6 +22,10 @@ namespace JET.Mono
         {
             IngameLogger.CheckAndSet();
             Validator.IsGameFound();
+            if (Validator.isFullLoggerEnabled)
+            {
+                PatchRunner.ExecuteLoggerPatches();
+            }
             PatchRunner.ExecuteCorePatches();
         }
         /// <summary>
@@ -30,9 +34,6 @@ namespace JET.Mono
         private void Start()
         {
             IngameLogger.CheckAndSet();
-            if (Validator.isFullLoggerEnabled) {
-                PatchRunner.ExecuteLoggerPatches();
-            }
             PerformWatermarking();
             // load mods from CustomMods folder
             new ModsLoader();

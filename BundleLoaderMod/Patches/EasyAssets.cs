@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 using UnityEngine.Build.Pipeline;
 using JET.Utility;
 
-namespace BundleLoaderMod.Patches
+namespace BundleLoader.Patches
 {
     /// <summary>
     /// This Patch will ask the server for bundles it requires for game to run properly, will also try to save bundles on your hard drive
@@ -31,7 +31,7 @@ namespace BundleLoaderMod.Patches
         protected override MethodBase GetTargetMethod()
         {
             var targetType = Constants.Instance.TargetAssembly.GetTypes().First(IsTargetType);
-            return targetType.GetMethods().Single(x => x.Name == "method_0");
+            return targetType.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Single(x => x.Name == "method_0");
         }
 
         private static bool IsTargetType(Type type)
@@ -52,7 +52,20 @@ namespace BundleLoaderMod.Patches
                     Crc = v.Value.Crc,
                     Dependencies = v.Value.Dependencies
                 });
-            //TODO: Generate CRC and add bundles to results.
+            foreach (var (key, value) in Shared.CachedBundles)
+            {
+                uint i = 100;
+                var detail = new BundleDetails()
+                {
+                    FileName = value,
+                    Crc = i++,
+                    Dependencies = Shared.ManifestCache.ContainsKey(key)
+                        ? File.ReadAllLines(Shared.ManifestCache[key])
+                        : new string[] { }
+                };
+
+                results.Add(key, detail);
+            }
             __instance.Manifest = ScriptableObject.CreateInstance<CompatibilityAssetBundleManifest>();
             __instance.Manifest.SetResults(results);
 
