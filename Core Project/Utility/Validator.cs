@@ -95,12 +95,13 @@ namespace JET.Utility
                         string gamefilepath = Path.Combine(FoundGameFiles, Encoding.ASCII.GetString(varList[3]));
                         if (File.Exists(gamefilepath))
                         {
-                            FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(gamefilepath);
-                            if (myFileVersionInfo.ProductVersion.Split('-')[1] == FoundGameVersions.Split('.').Last())
-                            {
+                            // BSG are not updating registry anymore...
+                            //FileVersionInfo myFileVersionInfo = FileVersionInfo.GetVersionInfo(gamefilepath);
+                            //if (myFileVersionInfo.ProductVersion.Split('-')[1] == FoundGameVersions.Split('.').Last())
+                            //{
                                 NoOfficialHyh = false;
                                 return true;
-                            }
+                            //}
                         }
                     }
                 }
