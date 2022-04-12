@@ -18,7 +18,7 @@ public interface GInterface276
 
  */
 #endregion
-using IBundleLock = GInterface275;
+using IBundleLock = GInterface278;
 #region Information how to find "BindableState"
 /*
  * To get BindableState class you open dnspy and Assembly-CSharp then you simbly search for everything with value "initialValue" in variable then you open the only one GClass visible there
@@ -36,7 +36,9 @@ public sealed class GClass2563<T> : GClass2562<T>
 
  */
 #endregion
-using BindableState = GClass2563<Diz.DependencyManager.ELoadState>;
+using BindableState = GClass2566<Diz.DependencyManager.ELoadState>;
+
+// ^^ these went up 3 classes from 16440-17534
 
 namespace BundleLoader.Utilities
 {

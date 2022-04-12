@@ -20,7 +20,7 @@ namespace SinglePlayerMod.Patches.MatchMaker
         }
 
         public static void PatchPostfix(UpdatableToggle ____offlineModeToggle, UpdatableToggle ____botsEnabledToggle,
-            TMPDropDownBox ____aiAmountDropdown, TMPDropDownBox ____aiDifficultyDropdown, UpdatableToggle ____enableBosses,
+            DropDownBox ____aiAmountDropdown, DropDownBox ____aiDifficultyDropdown, UpdatableToggle ____enableBosses,
             UpdatableToggle ____scavWars, UpdatableToggle ____taggedAndCursed)
         {
             ____offlineModeToggle.isOn = true;

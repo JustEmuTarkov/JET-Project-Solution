@@ -9,14 +9,16 @@ using JET.Utility.Patching;
 using JET.Utility.Reflection;
 using JET.Utility;
 
-using MainMenuController = GClass1528; // .SelectedKeyCard
+using MainMenuController = GClass1517; // .SelectedKeyCard
 using WeatherSettings = GStruct101;
 using BotsSettings = GStruct244;
 using WavesSettings = GStruct103;
 //using WeatherSettings  IsRandomTime and IsRandomWeather
 //using BotsSettings  IsScavWars and BotAmount
 //using WavesSettings  IsTaggedAndCursed and IsBosses
-using MatchmakerScreenCreator = EFT.UI.Matchmaker.MatchmakerOfflineRaid.GClass2423; // simply go to class below and search for new gclass, simple as that...
+using MatchmakerScreenCreator = EFT.UI.Matchmaker.MatchmakerOfflineRaid.GClass2412; // simply go to class below and search for new gclass, simple as that...
+
+
 
 namespace SinglePlayerMod.Patches.ScavMode
 {

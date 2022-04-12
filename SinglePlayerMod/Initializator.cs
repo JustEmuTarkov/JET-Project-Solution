@@ -87,8 +87,8 @@ namespace SinglePlayerMod
                     HarmonyPatch.Patch<Patches.Progression.ExperienceGainFix>();
                 if (LoadPatchesFromServer.List_Patch.OfflineSaveProfile)
                     HarmonyPatch.Patch<Patches.Progression.OfflineSaveProfile>();
-                if (LoadPatchesFromServer.List_Patch.OfflineSpawnPoint)
-                    HarmonyPatch.Patch<Patches.Progression.OfflineSpawnPoint>();
+                //if (LoadPatchesFromServer.List_Patch.OfflineSpawnPoint)
+                //    HarmonyPatch.Patch<Patches.Progression.OfflineSpawnPoint>();
             }
         }
         private void Patch_Quests() 
