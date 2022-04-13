@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-using BotData = GInterface18; // find ChooseProfile and get ginterface off that
+using BotData = GInterface15; // find ChooseProfile and get ginterface off that
 
 namespace SinglePlayerMod.Patches.Raid
 {

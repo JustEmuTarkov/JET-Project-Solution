@@ -36,7 +36,7 @@ public sealed class GClass2563<T> : GClass2562<T>
 
  */
 #endregion
-using BindableState = GClass2566<Diz.DependencyManager.ELoadState>;
+using BindableState = GClass2558<Diz.DependencyManager.ELoadState>;
 
 // ^^ these went up 3 classes from 16440-17534
 

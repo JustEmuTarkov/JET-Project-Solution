@@ -6,7 +6,7 @@ using EFT.InventoryLogic;
 using UnityEngine;
 
 using Equipment = GClass2058; // GetSlot
-using StDamage = GStruct252; // HittedBallisticCollider
+using StDamage = GStruct260; // HittedBallisticCollider
 
 namespace SinglePlayerMod.Patches.Quests
 {

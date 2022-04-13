@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using JET.Utility;
 
-using IHealthController = GInterface191; // ActiveBuffsNames
-using StDamage = GStruct252; // BodyPartColliderType
-using IEffect = GInterface150; // AddWholeTime
+using IHealthController = GInterface195; // ActiveBuffsNames
+using StDamage = GStruct260; // BodyPartColliderType
+using IEffect = GInterface153; // AddWholeTime
 
 namespace SinglePlayerMod.Utility.Progression
 {

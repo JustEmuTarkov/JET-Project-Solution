@@ -9,16 +9,12 @@ using JET.Utility.Patching;
 using JET.Utility.Reflection;
 using JET.Utility;
 
-using MainMenuController = GClass1517; // .SelectedKeyCard
-using WeatherSettings = GStruct101;
-using BotsSettings = GStruct244;
-using WavesSettings = GStruct103;
-//using WeatherSettings  IsRandomTime and IsRandomWeather
-//using BotsSettings  IsScavWars and BotAmount
-//using WavesSettings  IsTaggedAndCursed and IsBosses
-using MatchmakerScreenCreator = EFT.UI.Matchmaker.MatchmakerOfflineRaid.GClass2412; // simply go to class below and search for new gclass, simple as that...
-
-
+using MainMenuController = GClass1504; // .SelectedKeyCard
+using WeatherSettings = GStruct104; // for these just look at the ShowNextScreen method parameters
+using BotsSettings = GStruct252;
+using WavesSettings = GStruct106;
+using MatchmakerScreenCreator = EFT.UI.Matchmaker.MatchmakerOfflineRaid.GClass2418; // simply go to class below and search for new gclass, simple as that...
+using EFT;
 
 namespace SinglePlayerMod.Patches.ScavMode
 {
@@ -91,7 +87,13 @@ private void method_61(bool local, GStruct101 weatherSettings, GStruct244 botsSe
                 $"{Constants.Instance.MainApplicationType.Name.ToLower()}_0",
                 ClientAccesor.GetMainApp());
 
-            var gclass = new MatchmakerScreenCreator();
+            // get profile info for game
+            var profileInfo = PrivateValueAccessor.GetPrivateFieldValue(
+                Constants.Instance.MainApplicationType,
+                $"profile_0",
+                ClientAccesor.GetMainApp()) as EFT.Profile;
+
+            var gclass = new MatchmakerScreenCreator(profileInfo.Info);
 
             gclass.OnShowNextScreen += LoadOfflineRaidNextScreen;
             gclass.OnShowReadyScreen += (OfflineRaidAction)Delegate.CreateDelegate(typeof(OfflineRaidAction), menuController, readyMethod);
