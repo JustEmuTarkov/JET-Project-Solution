@@ -12,8 +12,8 @@ namespace JET.Mono
         public static GameObject Instance;
         #region OnApplicationQuit Event
         public delegate void Void();
-            public static event Void ApplicationQuitEvent;
-            public void OnApplicationQuit() => ApplicationQuitEvent?.Invoke();
+        public static event Void ApplicationQuitEvent;
+        public void OnApplicationQuit() => ApplicationQuitEvent?.Invoke();
         #endregion
         /// <summary>
         /// Awake method that is called on Mono Start before any other methods
@@ -49,10 +49,14 @@ namespace JET.Mono
         /// <summary>
         /// Override the BetaVersion Text in left bottom corner of the screen
         /// </summary>
-        void PerformWatermarking() {
+        void PerformWatermarking()
+        {
             if (ClientAccesor.BetaVersionLabel != null)
             {
-                ClientAccesor.BetaVersionLabel.LocalizationKey = ClientAccesor.GameVersion.Split('.').Last() + " | JET" + Validator.OhWellFuck;
+                //ClientAccesor.BetaVersionLabel.LocalizationKey = ClientAccesor.GameVersion.Split('.').Last() + " | JET" + Validator.OhWellFuck;
+                // Lets get it almost like LIVE? Aki does this, so why don't we? 
+                ClientAccesor.BetaVersionLabel.LocalizationKey = ClientAccesor.GameVersion;
+
             }
         }
     }

@@ -56,7 +56,9 @@ namespace JET.Utility
         {
             get
             {
-                return (NoOfficialHyh) ? " | Detected Pirated Game Files! Please buy the game." : "";
+                //return (NoOfficialHyh) ? " | Detected Pirated Game Files! Please buy the game." : "";
+                // Do you really need this?
+                return (NoOfficialHyh) ? "" : "";
             }
         }
         /// <summary>
