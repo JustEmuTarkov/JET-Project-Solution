@@ -104,10 +104,10 @@ namespace SinglePlayerMod
         {
             if (LoadPatchesFromServer.List_PatchNode.Raid)
             {
-                if (LoadPatchesFromServer.List_Patch.BossSpawnChance)
-                    HarmonyPatch.Patch<Patches.Raid.BossSpawnChance>();
-                if (LoadPatchesFromServer.List_Patch.BotSettingsLoad)
-                    HarmonyPatch.Patch<Patches.Raid.BotSettingsLoad>();
+                //if (LoadPatchesFromServer.List_Patch.BossSpawnChance)
+                //    HarmonyPatch.Patch<Patches.Raid.BossSpawnChance>();
+                //if (LoadPatchesFromServer.List_Patch.BotSettingsLoad)
+                //    HarmonyPatch.Patch<Patches.Raid.BotSettingsLoad>();
                 if (LoadPatchesFromServer.List_Patch.BotTemplateLimit)
                     HarmonyPatch.Patch<Patches.Raid.BotTemplateLimit>();
                 if (LoadPatchesFromServer.List_Patch.CoreDifficulty)
@@ -122,10 +122,10 @@ namespace SinglePlayerMod
                     HarmonyPatch.Patch<Patches.Raid.RemoveUsedBotProfile>();
                 if (LoadPatchesFromServer.List_Patch.SpawnPmc)
                     HarmonyPatch.Patch<Patches.Raid.SpawnPmc>();
-                if (LoadPatchesFromServer.List_Patch.SpawnRandomizationMod)
-                    HarmonyPatch.Patch<Patches.Raid.SpawnRandomizationMod>();
-                if (LoadPatchesFromServer.List_Patch.TinnitusFix)
-                    HarmonyPatch.Patch<Patches.Raid.TinnitusFix>();
+                //if (LoadPatchesFromServer.List_Patch.SpawnRandomizationMod)
+                //    HarmonyPatch.Patch<Patches.Raid.SpawnRandomizationMod>();
+                //if (LoadPatchesFromServer.List_Patch.TinnitusFix)
+                //    HarmonyPatch.Patch<Patches.Raid.TinnitusFix>();
             }
         }
         private void Patch_ScavMode() 

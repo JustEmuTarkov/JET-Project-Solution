@@ -57,7 +57,7 @@ namespace JET.Utility
 
                 if (compress)
                 {
-                    request.Headers.Add("Content-Encoding", "deflate");
+                    request.Headers.Add("content-encoding", "deflate");
                 }
 
                 using (Stream stream = request.GetRequestStream())

@@ -22,19 +22,20 @@ namespace SinglePlayerMod.Patches.Raid
 
         protected override MethodBase GetTargetMethod()
         {
-            foreach (var type in Constants.Instance.TargetAssembly.GetTypes())
-            {
-                if (type.Name.StartsWith("GClass"))
-                {
-                    var BoolCheck = type.GetMethod("GetNewProfile", BindingFlags.NonPublic | BindingFlags.Instance) == null;
-                    if (BoolCheck) continue;
-                    // its proper gclass now lets check if our targeted method exists there
-                    var TargetedMethod = type.GetMethod("method_1", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
-                    if (TargetedMethod != null)
-                        return TargetedMethod;
-                }
-            }
-            return null;
+            return typeof(BotsPresets).GetMethod("method_1", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            //foreach (var type in Constants.Instance.TargetAssembly.GetTypes())
+            //{
+            //    if (type.Name.StartsWith("GClass"))
+            //    {
+            //        var BoolCheck = type.GetMethod("GetNewProfile", BindingFlags.NonPublic | BindingFlags.Instance) == null;
+            //        if (BoolCheck) continue;
+            //        // its proper gclass now lets check if our targeted method exists there
+            //        var TargetedMethod = type.GetMethod("method_1", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            //        if (TargetedMethod != null)
+            //            return TargetedMethod;
+            //    }
+            //}
+            //return null;
         }
 
         public static void PatchPostfix(List<WaveInfo> __result/*, List<WaveInfo> wavesProfiles*/, List<WaveInfo> delayed)
@@ -56,15 +57,16 @@ namespace SinglePlayerMod.Patches.Raid
 
         private static int Request(WildSpawnType role)
         {
-            var json = new Request(null, ClientAccesor.BackendUrl).GetJson("/singleplayer/settings/bot/limit/" + role.ToString());
+            return 5;
+            //var json = new Request(null, ClientAccesor.BackendUrl).GetJson($"/singleplayer/settings/bot/limit/{role}");
 
-            if (string.IsNullOrWhiteSpace(json))
-            {
-                Debug.LogError("[JET]: Received bot " + role.ToString() + " limit data is NULL, using fallback");
-                return 30;
-            }
-            Debug.LogError("[JET]: Successfully received bot " + role.ToString() + " limit data");
-            return Convert.ToInt32(json);
+            //if (string.IsNullOrWhiteSpace(json))
+            //{
+            //    //Debug.LogError("[JET]: Received bot " + role.ToString() + " limit data is NULL, using fallback");
+            //    return 1;
+            //}
+            ////Debug.LogError("[JET]: Successfully received bot " + role.ToString() + " limit data");
+            //return Convert.ToInt32(json);
         }
     }
 }

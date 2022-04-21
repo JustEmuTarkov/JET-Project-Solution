@@ -31,10 +31,12 @@ namespace SinglePlayerMod.Patches.Raid
 
         public static bool PatchPrefix(ref int maxCount)
         {
-            var json = new JET.Utility.Request(null, ClientAccesor.BackendUrl).GetJson("/singleplayer/settings/bot/maxCap");
-            var isParsable = int.TryParse(json, out maxCount);
-            maxCount = isParsable ? maxCount : 20;
-            return false;
+            maxCount = 1;
+            return true;
+            //var json = new JET.Utility.Request(null, ClientAccesor.BackendUrl).GetJson("/singleplayer/settings/bot/maxCap");
+            //var isParsable = int.TryParse(json, out maxCount);
+            //maxCount = isParsable ? maxCount : 20;
+            //return false;
         }
     }
 }

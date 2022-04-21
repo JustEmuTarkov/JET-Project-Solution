@@ -32,19 +32,32 @@ namespace SinglePlayerMod.Patches.Raid
 
         private bool IsTargetType(Type type)
         {
-            if (!targetInterface.IsAssignableFrom(type))
-                return false;
+            //if (!targetInterface.IsAssignableFrom(type))
+            //    return false;
 
-            if (!type.GetMethods(BindingFlags.Public | BindingFlags.Instance)
-                     .Any(m => m.Name == "SameSide"))
-                return false;
+            //if (!type.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+            //         .Any(m => m.Name == "SameSide"))
+            //    return false;
 
-            if (!type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+            //if (!type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+            //         .Any(f => f.FieldType == typeof(WildSpawnType) ||
+            //                   f.FieldType == typeof(BotDifficulty)))
+            //    return false;
+
+
+            if (targetInterface.IsAssignableFrom(type)
+            &&
+            type.GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                     .Any(m => m.Name == "SameSide")
+            &&
+            type.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
                      .Any(f => f.FieldType == typeof(WildSpawnType) ||
-                               f.FieldType == typeof(BotDifficulty)))
-                return false;
+                               f.FieldType == typeof(BotDifficulty))
+                               )
+                return true;
 
-            return true;
+            //return true;
+            return false;
         }
 
         protected override MethodBase GetTargetMethod()
@@ -57,7 +70,15 @@ namespace SinglePlayerMod.Patches.Raid
             var botType = wildSpawnTypeField(__instance);
             var botDifficulty = botDifficultyField(__instance);
 
+            //__result = x.Info.Settings.Role == botType && x.Info.Settings.BotDifficulty == botDifficulty;
+
+            EPlayerSide side = x.Info.Side;
+            //EPlayerSide? side2 = this.Side;
             __result = x.Info.Settings.Role == botType && x.Info.Settings.BotDifficulty == botDifficulty;
+            x.Info.Side = x.Info.Side == EPlayerSide.Savage ? EPlayerSide.Usec : side;
+
+
+            UnityEngine.Debug.LogError("SpawnPmc::Patch::Patched");
 
             return false;
         }

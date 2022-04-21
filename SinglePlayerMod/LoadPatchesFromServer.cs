@@ -35,8 +35,7 @@ namespace SinglePlayerMod
             public bool EndByTimer = true;
             public bool ExperienceGainFix = true;
             public bool OfflineSaveProfile = true;
-            public bool OfflineSpawnPoint = true;
-            //public bool ItemDroppedAtPlace_Beacon = true; // Disabled due to it being already fixed in the client
+            //public bool OfflineSpawnPoint = true;
             public bool UpdateDogtagOnKill = true;
             public bool BossSpawnChance = true;
             public bool BotSettingsLoad = true;

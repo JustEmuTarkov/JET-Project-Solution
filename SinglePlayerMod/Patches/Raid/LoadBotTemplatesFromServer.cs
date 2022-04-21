@@ -84,7 +84,14 @@ namespace SinglePlayerMod.Patches.Raid
 
         private static Profile GetFirstResult(Task<Profile[]> task)
         {
-            return task.Result.FirstOrDefault(); // make sure to not return null here
+            if (task.IsCompleted && task.Result.Any())
+            {
+                var result = task.Result[0];
+                UnityEngine.Debug.LogError($"Loading bot profile from server. role: {result.Info.Settings.Role} side: {result.Side}");
+                return result;
+            }
+
+            return null;
         }
 
         private struct Continuation
