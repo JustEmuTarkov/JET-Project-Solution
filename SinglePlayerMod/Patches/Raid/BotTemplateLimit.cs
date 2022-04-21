@@ -7,6 +7,7 @@ using JET.Utility;
 using UnityEngine;
 using WaveInfo = GClass1250; // search for: Difficulty and chppse gclass with lower number whic hcontains Role and Limit variables
 using BotsPresets = GClass598; // Method: GetNewProfile (higher GClass number)
+using System.Linq;
 // Method: GetNewProfile (higher GClass number)
 
 namespace SinglePlayerMod.Patches.Raid
@@ -22,17 +23,18 @@ namespace SinglePlayerMod.Patches.Raid
 
         protected override MethodBase GetTargetMethod()
         {
-            foreach (var type in Constants.Instance.TargetAssembly.GetTypes())
+            var sortedList = Constants.Instance.TargetAssembly.GetTypes().Where(_class => _class.Name.StartsWith("GClass"));
+            foreach (var type in sortedList)
             {
-                if (type.Name.StartsWith("GClass"))
-                {
+                //if (type.Name.StartsWith("GClass"))
+                //{
                     var BoolCheck = type.GetMethod("GetNewProfile", BindingFlags.NonPublic | BindingFlags.Instance) == null;
                     if (BoolCheck) continue;
                     // its proper gclass now lets check if our targeted method exists there
                     var TargetedMethod = type.GetMethod("method_1", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly);
                     if (TargetedMethod != null)
                         return TargetedMethod;
-                }
+                //}
             }
             return null;
         }

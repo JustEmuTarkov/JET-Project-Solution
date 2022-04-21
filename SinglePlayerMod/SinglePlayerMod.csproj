@@ -126,12 +126,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core Project\JET Project Solution.csproj">
-      <Project>{0960DB9C-E990-4104-AFEE-A7E09CEB610F}</Project>
+      <Project>{0960db9c-e990-4104-afee-a7e09ceb610f}</Project>
       <Name>JET Project Solution</Name>
-      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /y "$(TargetDir)$(AssemblyName).dll" "$(SolutionDir)Build\ClientMods\$(AssemblyName).dll"

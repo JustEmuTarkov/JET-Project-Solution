@@ -70,15 +70,39 @@ namespace BundleLoader.Patches
             __instance.Manifest.SetResults(results);
 
             var allAssetBundles = __instance.Manifest.GetAllAssetBundles();
-            var bundles = new object[allAssetBundles.Length];
-            bundleLock = Shared.BundleLockConstructor.Invoke(new object[] {int.MaxValue}); // there was ??= but it was throwing errors so it got removed
+            var bundles = new List<object>(allAssetBundles.Length); // create the list for bundles
+
+            if (bundleLock == null) // use this instead of ??= in C# 7.3
+                bundleLock = Shared.BundleLockConstructor.Invoke(new object[] { int.MaxValue }); // it was using ??= but its not required here :)
             for (var i = 0; i < allAssetBundles.Length; i++)
             {
-                bundles[i] = Activator.CreateInstance(Shared.LoaderType, allAssetBundles[i], string.Empty, __instance.Manifest, bundleLock, bundleCheck);
+                //__instance.Manifest -> i removed this cause it was causing client to crash. Propably because of incompatibility with something ? or wrong types etc.
+                // Add the Bundle to the list using GInterface
+                /* CODE SNIPET
+                using UnityEngine;
+
+                // Token: 0x02002424 RID: 9252
+                public interface GInterface275 : GInterface278
+                {
+                    // Token: 0x17001BE3 RID: 7139
+                    // (get) Token: 0x0600D1AE RID: 53678
+                    [CanBeNull]
+                    UnityEngine.Object[] Assets { get; }
+
+                    // Token: 0x17001BE4 RID: 7140
+                    // (get) Token: 0x0600D1AF RID: 53679
+                    [CanBeNull]
+                    UnityEngine.Object SameNameAsset { get; }
+                }
+                 CODE SNIPET */
+                bundles.Add(Activator.CreateInstance(Shared.LoaderType, new object[] { allAssetBundles[i], string.Empty, null, bundleLock, bundleCheck }));
                 JobScheduler.Yield().GetAwaiter();
             }
 
-            AccessTools.Property(__instance.GetType(), "System").SetValue(__instance, Activator.CreateInstance(Shared.NodeType, bundles, defaultKey, shouldExclude));
+
+            // initialize class .ctor "public GClass2578(T[] loadables, string defaultKey, [CanBeNull] Func<string, bool> shouldExclude) {}" (GClass2578 can change)
+            AccessTools.Property(__instance.GetType(), "System")
+                .SetValue(__instance, Activator.CreateInstance(Shared.NodeType, new object[] { bundles.ToArray(), defaultKey, shouldExclude }));
             return false;
         }
 

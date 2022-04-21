@@ -24,7 +24,6 @@ namespace BundleLoader
             {
                 if (_loaderType == null)
                     _loaderType = Constants.Instance.TargetAssembly.GetTypes().Single(x => x.IsClass && x.GetProperty("SameNameAsset") != null);
-                Debug.LogError("LoaderType: " + _loaderType.FullName);
                 return _loaderType;
             }
         }
