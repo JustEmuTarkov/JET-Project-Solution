@@ -22,8 +22,10 @@ namespace BundleLoader
         {
             get
             {
+                //DependencyKeys
                 if (_loaderType == null)
                     _loaderType = Constants.Instance.TargetAssembly.GetTypes().Single(x => x.IsClass && x.GetProperty("SameNameAsset") != null);
+                    //_loaderType = Constants.Instance.TargetAssembly.GetTypes().Single(x => x.IsClass && x.GetProperty("SameNameAsset") != null);
                 return _loaderType;
             }
         }
@@ -46,9 +48,11 @@ namespace BundleLoader
             {
                 if (_nodeType == null)
                 {
+                    //var nodeInterfaceType = Constants.Instance.TargetAssembly.GetTypes()
+                    //    .First(x => x.IsInterface && x.GetProperty("SameNameAsset") != null);
                     var nodeInterfaceType = Constants.Instance.TargetAssembly.GetTypes()
-                        .First(x => x.IsInterface && x.GetProperty("SameNameAsset") != null);
-
+                        .First(x => x.IsInterface && x.GetProperty("DependencyKeys") != null);
+                    Debug.LogError(nodeInterfaceType.Name);
                     _nodeType = Constants.Instance.TargetAssembly.GetTypes()
                         .Single(x =>
                             x.IsClass && x.GetMethod("GetNode") != null && string.IsNullOrWhiteSpace(x.Namespace))

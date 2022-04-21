@@ -15,6 +15,7 @@ using JET.Utility.Patching;
 using Newtonsoft.Json;
 using UnityEngine.Build.Pipeline;
 using JET.Utility;
+using System.Threading;
 
 namespace BundleLoader.Patches
 {
@@ -69,11 +70,27 @@ namespace BundleLoader.Patches
             __instance.Manifest = ScriptableObject.CreateInstance<CompatibilityAssetBundleManifest>();
             __instance.Manifest.SetResults(results);
 
-            var allAssetBundles = __instance.Manifest.GetAllAssetBundles();
-            var bundles = new List<object>(allAssetBundles.Length); // create the list for bundles
 
+            Task<List<object>> bundlesTask = LoadBundlesAsync(__instance, bundleLock, bundleCheck);
+
+            while (!bundlesTask.IsCompleted) 
+            {
+            }
+
+            var bundles = bundlesTask.Result;
+            // initialize class .ctor "public GClass2578(T[] loadables, string defaultKey, [CanBeNull] Func<string, bool> shouldExclude) {}" (GClass2578 can change)
+            AccessTools.Property(__instance.GetType(), "System")
+                .SetValue(__instance, Activator.CreateInstance(Shared.NodeType, new object[] { bundles.ToArray(), defaultKey, shouldExclude }));
+            return false;
+        }
+
+        private static async Task<List<object>> LoadBundlesAsync(Diz.Resources.EasyAssets __instance, object bundleLock, Func<string, Task> bundleCheck) 
+        {
             if (bundleLock == null) // use this instead of ??= in C# 7.3
                 bundleLock = Shared.BundleLockConstructor.Invoke(new object[] { int.MaxValue }); // it was using ??= but its not required here :)
+
+            var allAssetBundles = __instance.Manifest.GetAllAssetBundles();
+            var bundles = new List<object>(allAssetBundles.Length); // create the list for bundles
             for (var i = 0; i < allAssetBundles.Length; i++)
             {
                 //__instance.Manifest -> i removed this cause it was causing client to crash. Propably because of incompatibility with something ? or wrong types etc.
@@ -96,14 +113,16 @@ namespace BundleLoader.Patches
                 }
                  CODE SNIPET */
                 bundles.Add(Activator.CreateInstance(Shared.LoaderType, new object[] { allAssetBundles[i], string.Empty, null, bundleLock, bundleCheck }));
-                JobScheduler.Yield().GetAwaiter();
+                //Debug.LogError($"{i} -> {allAssetBundles[i]}");
+                //Debug.LogError($"{i} -> Done");
             }
-
-
-            // initialize class .ctor "public GClass2578(T[] loadables, string defaultKey, [CanBeNull] Func<string, bool> shouldExclude) {}" (GClass2578 can change)
-            AccessTools.Property(__instance.GetType(), "System")
-                .SetValue(__instance, Activator.CreateInstance(Shared.NodeType, new object[] { bundles.ToArray(), defaultKey, shouldExclude }));
-            return false;
+            GInterface270 ginterface = JobScheduler.Yield().GetAwaiter();
+            if (!ginterface.IsCompleted)
+            {
+                Thread.Sleep(1);
+            }
+            ginterface.GetResult();
+            return bundles;
         }
 
         private static string GetLocalBundlePath(Bundle bundle)
