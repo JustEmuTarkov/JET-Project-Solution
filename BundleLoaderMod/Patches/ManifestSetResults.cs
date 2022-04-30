@@ -24,7 +24,10 @@ namespace BundleLoader.Patches
             //CompatibilityAssetBundleManifest.SetResults(results)
             return typeof(CompatibilityAssetBundleManifest).GetMethod("SetResults");
         }
-        // if that works then load it by using postfix (after the call of main method)
+        /// <summary>
+        /// This patch simply loads data from server (custom bundles) and then adds new bundles to the existing ones after that code continues as normal
+        /// </summary>
+        /// <param name="__instance"></param>
         private static void PatchPostfix(object __instance/*Dictionary<string, BundleDetails> results, ref Dictionary<string, BundleDetails> __m_Details*/)
         {
             LoadBundlesFromServer();
@@ -36,7 +39,15 @@ namespace BundleLoader.Patches
             }
             Debug.LogError($"Loaded {m_CustomDetails.Count} custom bundles");
         }
+        // this is place where custom bundles will be created from function GenerateCustomBundleDetails()
         private static Dictionary<string, BundleDetails> m_CustomDetails = new Dictionary<string, BundleDetails>();
+        /// <summary>
+        /// Creates Custom Bundle data that will be injected later on into the original list
+        /// </summary>
+        /// <param name="bundleName"></param>
+        /// <param name="modName"></param>
+        /// <param name="FolderPath"></param>
+        /// <param name="Dependencies"></param>
         static void GenerateCustomBundleDetails(string bundleName, string modName, string FolderPath, string[] Dependencies) {
             var bundleDetails = new BundleDetails()
             {
@@ -46,9 +57,14 @@ namespace BundleLoader.Patches
             };
 
             m_CustomDetails.Add($"CustomAssets/{modName}/{bundleName}", bundleDetails);
-            //BuildPipeline.GetCRCForAssetBundle(path, out crc);
-
         }
+        /// <summary>
+        /// This function Requests server about bundles they are using then it checks if files are from local server 
+        /// if so then it will simply copy bundles from server directory
+        /// if not then it will ask server to give the files aka Download them from server
+        /// after that all bundles should be located in 
+        /// "EscapeFromTarkov_Data/StreamingAssets/Windows/CustomAssets/Mod_Name_with_Version/*.bundle"
+        /// </summary>
         static void LoadBundlesFromServer() 
         {
             // make sure main folder for custom bundles exists !!!
@@ -56,11 +72,11 @@ namespace BundleLoader.Patches
             {
                 Directory.CreateDirectory(PathGeneration.CustomAssetsPath);
             }
-            //CheckCustomAssetsPath();
+            // request server manifest
             var text = new Request(null, ClientAccesor.BackendUrl).GetJson("/singleplayer/bundles");
             var serverBundles = JsonConvert.DeserializeObject<Shared.Bundle[]>(text);
 
-            // loop through list of all bundles
+            // loop through manifest of all custom bundles
             foreach (var bundle in serverBundles) 
             {
                 bool isLocalFile = Shared.isLocalServerFile(bundle.path);
@@ -76,18 +92,16 @@ namespace BundleLoader.Patches
                 // download only if file is not existing in a first place
                 if (!File.Exists(customBundleFilePath))
                 {
+                    // if local server just copy file
                     if (isLocalFile)
                     {
                         File.Copy(bundle.path, customBundleFilePath);
                         Debug.LogError($"LOCAL FILE COPY: {bundle.path} => {customBundleFilePath}");
                     }
+                    // download using WebClient otherwise
                     else
                     {
-                        // Download bundle and put it in the cache folder
                         var url = ClientAccesor.BackendUrl + "/files/bundle/" + bundle.key;
-
-                        Debug.Log("Downloading bundle from " + url);
-
                         _client.DownloadFile(url, customBundleFilePath);
                         Debug.LogError($"DOWNLOAD FILE: {url} => {customBundleFilePath}");
                     }

@@ -3,10 +3,8 @@
  */
 
 using JET.Utility.Modding;
-using JET.Utility.Patching;
 using System;
 using System.Collections.Generic;
-using BundleLoader.Patches;
 
 namespace BundleLoader
 {
