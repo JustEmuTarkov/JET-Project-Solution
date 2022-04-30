@@ -15,7 +15,7 @@ namespace JET.Patches.Core
 		protected override MethodBase GetTargetMethod()
 		{
 			return Constants.Instance.TargetAssemblyTypes
-				.Single(x => x.BaseType == Constants.Instance.UnityCertificateHandlerType)
+				.Single(x => x.BaseType == typeof(UnityEngine.Networking.CertificateHandler))
 				.GetMethod(_ValidateCertificate, Constants.Instance.NonPublicInstanceDeclaredOnlyFlag);
 		}
 
