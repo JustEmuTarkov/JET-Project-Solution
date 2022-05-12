@@ -15,7 +15,7 @@ namespace SinglePlayerMod.Utility.Progression
 			};
 
 			// ToJson() uses an internal converter which prevents loops and do other internal things
-			new Request(session, backendUrl).PutJson("/raid/profile/save", request.ToJson());
+			new Request(session, backendUrl).PostJson("/raid/profile/save", request.ToJson());
 		}
 
 		internal class SaveProfileRequest

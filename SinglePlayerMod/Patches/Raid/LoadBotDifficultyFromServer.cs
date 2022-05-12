@@ -38,7 +38,7 @@ namespace SinglePlayerMod.Patches.Raid
                 return null;
             }
 
-            Debug.LogError("[JET]: Successfully received bot " + role.ToString() + " " + botDifficulty.ToString() + " difficulty data");
+            //Debug.LogError("[JET]: Successfully received bot " + role.ToString() + " " + botDifficulty.ToString() + " difficulty data");
             return json;
         }
     }

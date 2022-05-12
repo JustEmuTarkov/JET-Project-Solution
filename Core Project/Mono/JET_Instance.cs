@@ -55,7 +55,7 @@ namespace JET.Mono
             {
                 //ClientAccesor.BetaVersionLabel.LocalizationKey = ClientAccesor.GameVersion.Split('.').Last() + " | JET" + Validator.OhWellFuck;
                 // Lets get it almost like LIVE? Aki does this, so why don't we? 
-                ClientAccesor.BetaVersionLabel.LocalizationKey = ClientAccesor.GameVersion;
+                ClientAccesor.BetaVersionLabel.LocalizationKey = string.Empty;
 
             }
         }

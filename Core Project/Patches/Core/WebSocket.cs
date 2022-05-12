@@ -15,9 +15,24 @@ namespace JET.Patches.Core
 
         protected override MethodBase GetTargetMethod()
         {
-            var targetInterface = Constants.Instance.TargetAssemblyTypes.Single(x => x.GetMethod("SetRequestHeader", BindingFlags.NonPublic | BindingFlags.Instance) != null && x.IsInterface);
+            var targetInterface = Constants.Instance.TargetAssemblyTypes
+                .Single(
+                x => 
+                x.GetProperty("TransportType", BindingFlags.Public) != null
+                //x.GetMethod("SetRequestHeader", BindingFlags.NonPublic | BindingFlags.Instance) != null
+                && x.IsInterface);
             var typeThatMatches = Constants.Instance.TargetAssemblyTypes.Single(x => targetInterface.IsAssignableFrom(x) && x.IsAbstract && !x.IsInterface);
-            return typeThatMatches.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance).Single(x => x.ReturnType == typeof(Uri));
+            var wsMethod = typeThatMatches.GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
+                .Single(x => x.ReturnType == typeof(Uri));
+
+            if (wsMethod == null)
+                UnityEngine.Debug.LogError("WebSocket Patch:: Cannot find WebSocket TargetMethod");
+            else
+            {
+                UnityEngine.Debug.LogError("WebSocket Patch:: WebSocket TargetMethod ::" + typeThatMatches.FullName + "." + wsMethod.Name + "");
+            }
+
+            return wsMethod;
         }
 
         private static Uri PatchPostfix(Uri __instance)

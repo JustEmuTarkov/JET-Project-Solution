@@ -36,6 +36,7 @@ namespace SinglePlayerMod.Patches.Progression
 
         public static void PatchPrefix(ESideType ___esideType_0, Result<EFT.ExitStatus, TimeSpan, object> result)
         {
+            UnityEngine.Debug.LogError("OfflineSaveProfile::PatchPrefix");
             var session = ClientAccesor.GetClientApp().GetClientBackEndSession();
             var isPlayerScav = false;
             var profile = session.Profile;

@@ -116,12 +116,12 @@ namespace SinglePlayerMod
                     HarmonyPatch.Patch<Patches.Raid.LoadBotDifficultyFromServer>();
                 if (LoadPatchesFromServer.List_Patch.LoadBotTemplatesFromServer)
                     HarmonyPatch.Patch<Patches.Raid.LoadBotTemplatesFromServer>();
-                if (LoadPatchesFromServer.List_Patch.MaxBotCap)
-                    HarmonyPatch.Patch<Patches.Raid.MaxBotCap>();
+                //if (LoadPatchesFromServer.List_Patch.MaxBotCap)
+                //    HarmonyPatch.Patch<Patches.Raid.MaxBotCap>();
                 if (LoadPatchesFromServer.List_Patch.RemoveUsedBotProfile)
                     HarmonyPatch.Patch<Patches.Raid.RemoveUsedBotProfile>();
-                if (LoadPatchesFromServer.List_Patch.SpawnPmc)
-                    HarmonyPatch.Patch<Patches.Raid.SpawnPmc>();
+                //if (LoadPatchesFromServer.List_Patch.SpawnPmc)
+                //    HarmonyPatch.Patch<Patches.Raid.SpawnPmc>();
                 //if (LoadPatchesFromServer.List_Patch.SpawnRandomizationMod)
                 //    HarmonyPatch.Patch<Patches.Raid.SpawnRandomizationMod>();
                 //if (LoadPatchesFromServer.List_Patch.TinnitusFix)

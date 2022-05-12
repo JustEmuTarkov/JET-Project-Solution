@@ -13,7 +13,7 @@ namespace JET
             // Order is crucial
             HarmonyPatch.Patch<FileChecker_Override>();
             HarmonyPatch.Patch<BattleEye>();
-            HarmonyPatch.Patch<NotificationSsl>();
+            //HarmonyPatch.Patch<NotificationSsl>();
             HarmonyPatch.Patch<SslCertificate>();
             HarmonyPatch.Patch<UnityWebRequest>();
         }

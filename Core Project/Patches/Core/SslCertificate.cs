@@ -7,7 +7,7 @@ namespace JET.Patches.Core
 	/// <summary>
 	/// Overrides SSL certificate method response to always return true.
 	/// </summary>
-    class SslCertificate : GenericPatch<SslCertificate>
+	class SslCertificate : GenericPatch<SslCertificate>
 	{
 		private string _ValidateCertificate = "ValidateCertificate";
 		public SslCertificate() : base(prefix: nameof(PatchPrefix)) { }
@@ -15,7 +15,7 @@ namespace JET.Patches.Core
 		protected override MethodBase GetTargetMethod()
 		{
 			return Constants.Instance.TargetAssemblyTypes
-				.Single(x => x.BaseType == Constants.Instance.UnityCertificateHandlerType)
+				.Single(x => x.BaseType == typeof(UnityEngine.Networking.CertificateHandler))
 				.GetMethod(_ValidateCertificate, Constants.Instance.NonPublicInstanceDeclaredOnlyFlag);
 		}
 
