@@ -37,12 +37,12 @@ namespace BundleLoader.Patches
                     if (!File.Exists(bundlePath))
                     {
                         Shared.CachedBundles.Add(customBundle.name, fullPath);
-                        Debug.Log("Cached modded bundle " + customBundle.name);
+                        Debug.LogError("Cached modded bundle " + customBundle.name);
                         var manifestPath = fullPath + ".manifest";
                         if (File.Exists(manifestPath))
                         {
                             Shared.ManifestCache.Add(customBundle.name, manifestPath);
-                            Debug.Log("Cached manifest for " + customBundle.name);
+                            Debug.LogError("Cached manifest for " + customBundle.name);
                         }
                     }
                     else
@@ -56,7 +56,7 @@ namespace BundleLoader.Patches
                             if (!Shared.ModdedAssets[customBundle.name].Contains(assetName))
                                 Shared.ModdedAssets[customBundle.name].Add(assetName);
                         }
-                        Debug.Log("Cached modded assets for " + customBundle.name);
+                        Debug.LogError("Cached modded assets for " + customBundle.name);
                     }
 
 
