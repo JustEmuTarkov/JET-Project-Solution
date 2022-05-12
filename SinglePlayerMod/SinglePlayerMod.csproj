@@ -71,9 +71,15 @@
       <HintPath>..\References\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\References\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\References\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\References\UnityEngine.PhysicsModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>..\References\UnityEngine.UI.dll</HintPath>
@@ -99,6 +105,11 @@
     <Compile Include="Patches\Progression\OfflineSpawnPoint.cs" />
     <Compile Include="Patches\Quests\ItemDroppedAtPlace_Beacon.cs" />
     <Compile Include="Patches\Quests\UpdateDogtagOnKill.cs" />
+    <Compile Include="Patches\Raid\AirdropLogic.cs" />
+    <Compile Include="Patches\Raid\AirDropSpawner.cs" />
+    <Compile Include="Patches\Raid\Airdrop\HandleComponent.cs" />
+    <Compile Include="Patches\Raid\Airdrop\ChancePercent.cs" />
+    <Compile Include="Patches\Raid\Airdrop\Config.cs" />
     <Compile Include="Patches\Raid\BossSpawnChance.cs" />
     <Compile Include="Patches\Raid\LoadBotDifficultyFromServer.cs" />
     <Compile Include="Patches\Raid\BotSettingsLoad.cs" />
