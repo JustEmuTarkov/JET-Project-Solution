@@ -9,11 +9,11 @@ using JET.Utility.Patching;
 using JET.Utility.Reflection;
 using JET.Utility;
 
-using MainMenuController = GClass1504; // .SelectedKeyCard
+using MainMenuController = GClass1510; // .SelectedKeyCard
 using WeatherSettings = GStruct104; // for these just look at the ShowNextScreen method parameters
-using BotsSettings = GStruct252;
+using BotsSettings = GStruct254;
 using WavesSettings = GStruct106;
-using MatchmakerScreenCreator = EFT.UI.Matchmaker.MatchmakerOfflineRaid.GClass2418; // simply go to class below and search for new gclass, simple as that...
+using MatchmakerScreenCreator = EFT.UI.Matchmaker.MatchmakerOfflineRaid.GClass2430; // simply go to class below and search for new gclass, simple as that...
 using EFT;
 
 namespace SinglePlayerMod.Patches.ScavMode

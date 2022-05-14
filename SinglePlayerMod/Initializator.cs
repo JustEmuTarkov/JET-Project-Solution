@@ -55,10 +55,10 @@ namespace SinglePlayerMod
         {
             if (LoadPatchesFromServer.List_PatchNode.MatchMaker)
             {
-                if (LoadPatchesFromServer.List_Patch.AutoSetOfflineMatch)
-                    HarmonyPatch.Patch<Patches.MatchMaker.AutoSetOfflineMatch>();
-                if (LoadPatchesFromServer.List_Patch.BringBackInsuranceScreen)
-                    HarmonyPatch.Patch<Patches.MatchMaker.BringBackInsuranceScreen>();
+                //if (LoadPatchesFromServer.List_Patch.AutoSetOfflineMatch)
+                //    HarmonyPatch.Patch<Patches.MatchMaker.AutoSetOfflineMatch>();
+                //if (LoadPatchesFromServer.List_Patch.BringBackInsuranceScreen)
+                //    HarmonyPatch.Patch<Patches.MatchMaker.BringBackInsuranceScreen>();
                 if (LoadPatchesFromServer.List_Patch.DisableReadyButtonOnFirstScreen)
                     HarmonyPatch.Patch<Patches.MatchMaker.DisableReadyButtonOnFirstScreen>();
                 if (LoadPatchesFromServer.List_Patch.DisableReadyButtonOnSelectLocation)
@@ -108,8 +108,8 @@ namespace SinglePlayerMod
                 //    HarmonyPatch.Patch<Patches.Raid.BossSpawnChance>();
                 //if (LoadPatchesFromServer.List_Patch.BotSettingsLoad)
                 //    HarmonyPatch.Patch<Patches.Raid.BotSettingsLoad>();
-                if (LoadPatchesFromServer.List_Patch.BotTemplateLimit)
-                    HarmonyPatch.Patch<Patches.Raid.BotTemplateLimit>();
+                //if (LoadPatchesFromServer.List_Patch.BotTemplateLimit)
+                //    HarmonyPatch.Patch<Patches.Raid.BotTemplateLimit>();
                 if (LoadPatchesFromServer.List_Patch.CoreDifficulty)
                     HarmonyPatch.Patch<Patches.Raid.CoreDifficulty>();
                 if (LoadPatchesFromServer.List_Patch.LoadBotDifficultyFromServer)
